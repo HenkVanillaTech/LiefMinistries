@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+  <!-- ============================================================
+       DEVELOPER NOTE: DOCUMENT HEAD
+       This section holds metadata used by browsers and search
+       engines. Nothing here is visible on the page itself, but it
+       strongly affects SEO (Search Engine Optimization) and how
+       the site looks when shared on social media.
+       ============================================================ -->
+
+  <meta charset="UTF-8">
+
+  <!-- Responsive viewport tag: tells mobile/tablet browsers to render
+       the page at the device's actual width instead of zooming out
+       to fit a "desktop" layout. Required for any mobile-friendly site. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary SEO tags -->
+  <title>Contact Us — Life Ministries</title>
+  <meta name="description" content="Get in touch with Life Ministries — 13 Bloekomboom Street, Heidelberg, Gauteng, 1441. Phone 016 349 6954 or email admin@lifeministries.co.za.">
+  <meta name="keywords" content="Life Ministries, Christian church Heidelberg, Christian school Heidelberg, Sunday service, Bible study, youth group, Life Ministries Christian School, Heidelberg Gauteng church">
+  <meta name="author" content="Life Ministries">
+  <meta name="robots" content="index, follow">
+
+  <!-- Canonical URL: tells search engines the "official" address of this
+       page so duplicate copies (http vs https, trailing slash, etc.)
+       don't split your SEO ranking. UPDATE this to your real domain. -->
+  <link rel="canonical" href="https://lifeministries.co.za/contact.html">
+
+  <!-- Open Graph tags: control how the page looks when someone shares
+       the link on Facebook, WhatsApp, LinkedIn, etc. -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Contact Us — Life Ministries">
+  <meta property="og:description" content="Get in touch with Life Ministries — 13 Bloekomboom Street, Heidelberg, Gauteng, 1441. Phone 016 349 6954 or email admin@lifeministries.co.za.">
+  <meta property="og:url" content="https://lifeministries.co.za/contact.html">
+  <meta property="og:site_name" content="Life Ministries">
+  <meta property="og:locale" content="en_ZA">
+  <meta property="og:image" content="images/our-church/church-building.jpg">
+
+  <!-- Twitter Card tags: same idea as Open Graph, but for Twitter/X -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Contact Us — Life Ministries">
+  <meta name="twitter:description" content="Get in touch with Life Ministries — 13 Bloekomboom Street, Heidelberg, Gauteng, 1441. Phone 016 349 6954 or email admin@lifeministries.co.za.">
+
+  <!-- Favicon (browser tab icon). Replace with your own icon file. -->
+  <link rel="icon" type="image/png" href="images/shared/logo.png">
+
+  <!-- ============================================================
+       DEVELOPER NOTE: STRUCTURED DATA (JSON-LD)
+       This block is invisible to visitors but read by search engines
+       (Google, Bing) to understand "this is a Church" and can enable
+       rich results (e.g. showing service times directly in search).
+       Schema type used: "Church" (a subtype of "Organization").
+       ============================================================ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Church",
+    "name": "Life Ministries",
+    "url": "https://lifeministries.co.za/",
+    "logo": "images/shared/logo.png",
+    "image": "images/our-church/church-building.jpg",
+    "telephone": "+27163496954",
+    "email": "admin@lifeministries.co.za",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Heidelberg",
+      "addressRegion": "Gauteng",
+      "addressCountry": "ZA"
+    },
+    "sameAs": [
+      "https://www.facebook.com/LMinistries/",
+      "https://www.youtube.com/channel/UC44tvG1QtsGZd-dPXgL7Evg"
+    ]
+  }
+  </script>
+
+  <!-- ============================================================
+       DEVELOPER NOTE: BOOTSTRAP CSS (from CDN)
+       Bootstrap is a CSS framework that provides a responsive grid
+       system (container/row/col classes) and pre-built components
+       (navbar, cards, buttons) so the page automatically adapts to
+       phone, tablet and desktop screen widths without custom media
+       queries for most of the layout.
+       NOTE: This is loaded from a CDN, which requires an internet
+       connection. If you need this page to work 100% offline,
+       download bootstrap.min.css and bootstrap.bundle.min.js into
+       a /vendor folder and change these paths to point there.
+       ============================================================ -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons (used for the phone/email/social icons) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+  <!-- Our own custom stylesheet, loaded AFTER Bootstrap so our rules
+       can override Bootstrap's defaults where needed. -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <a class="visually-hidden-focusable skip-link" href="#main-content">Skip to main content</a>
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm py-2" aria-label="Main navigation">
+      <div class="container">
+
+        <!-- Logo / site name. Wrapping the logo in a link back to "/"
+             is standard practice: it doubles as a "home" button. -->
+        <a class="navbar-brand" href="index.html">
+          <img src="images/shared/logo.png" alt="Life Ministries logo" height="60" width="180">
+        </a>
+
+        <!-- Hamburger toggle button, only visible below the "lg" breakpoint.
+             LEARNING NOTE: data-bs-toggle and data-bs-target are called
+             "data attributes" — any attribute you make up starting with
+             data- is valid HTML and does nothing on its own, but
+             JavaScript (in this case, Bootstrap's own bundled JS) can
+             read it to decide what to do. Here, Bootstrap's script sees
+             data-bs-toggle="collapse" and data-bs-target="#mainNavbar"
+             and wires this button up to show/hide the element with
+             id="mainNavbar" below — all without us writing any custom
+             JavaScript ourselves.
+             The aria-* attributes (aria-controls, aria-expanded,
+             aria-label) are ACCESSIBILITY attributes: they don't
+             change how the button LOOKS, only what a screen reader
+             announces to a blind/low-vision visitor using it. -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#mainNavbar" aria-controls="mainNavbar"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Collapsible nav links -->
+        <div class="collapse navbar-collapse" id="mainNavbar">
+          <!-- LEARNING NOTE: expanded from the original 4-item nav to
+               the client's requested 8-item structure. "I'm New" is
+               intentionally placed near the end, right before
+               Contact — that ordering is a common pattern on church
+               sites: it lets a first-time visitor find their way to
+               "what do I do if I've never been here" without it
+               competing for attention with the primary Church/School
+               navigation up front. -->
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
+            <li class="nav-item">
+              <!-- aria-current="page" tells assistive tech + SEO crawlers
+                   this is the current page, matching Home in the top nav -->
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="our-church.html">Our Church</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="our-school.html">Our School</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="ministries.html">Ministries</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="events.html">Events</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="media.html">Media</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="im-new.html">I'm New</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="contact.html">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ============================================================
+         DEVELOPER NOTE: PAGE HEADER
+         Unlike Home/Our Church/Our School, this page has no hero
+         photo — a Contact page is a utility page visitors come to
+         FOR the information (phone, address, form), not to be
+         welcomed with imagery, so a plain, calm intro band fits
+         better than a full-bleed photo. Uses the same navy/green
+         "eyebrow label" pattern as every other section on the site
+         for consistency, just without a background photo behind it.
+         ============================================================ -->
+    <section class="section-spacing text-center reveal-on-scroll" aria-label="Contact us introduction">
+      <div class="container">
+        <p class="text-uppercase fw-bold small mb-2" style="color: var(--brand-green); letter-spacing: 2px;">Get In Touch</p>
+        <div class="accent-underline mx-auto mb-4"></div>
+        <h1 class="h2 mb-3" style="color: var(--brand-navy);">Contact Us</h1>
+        <p class="text-muted mx-auto fs-5" style="max-width: 640px;">
+          We'd love to hear from you. Drop us a message about a service, a school enquiry, or to simply say hello &mdash; our office is open Monday to Friday from 08:00 to 14:00, and we typically respond within one working day.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         DEVELOPER NOTE: CONTACT DETAILS
+         Real details from the live site — phone, email, address and
+         office hours — as 4 cards on the dark navy section, matching
+         the pattern used for Service Times/Offerings on the Our
+         Church page and Banking/Office Hours on Our School.
+         ============================================================ -->
+    <section class="section-spacing section-dark" aria-label="Our contact details">
+      <div class="container reveal-on-scroll">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4 text-center">
+
+          <div class="col">
+            <h3 class="h6 text-uppercase mb-2" style="color: var(--brand-green); letter-spacing: 1px;">Phone</h3>
+            <p class="mb-0"><a href="tel:+27163496954" class="text-white text-decoration-none">016 349 6954</a></p>
+          </div>
+
+          <div class="col">
+            <h3 class="h6 text-uppercase mb-2" style="color: var(--brand-green); letter-spacing: 1px;">Email</h3>
+            <p class="mb-0"><a href="mailto:admin@lifeministries.co.za" class="text-white text-decoration-none">admin@lifeministries.co.za</a></p>
+          </div>
+
+          <div class="col">
+            <h3 class="h6 text-uppercase mb-2" style="color: var(--brand-green); letter-spacing: 1px;">Address</h3>
+            <p class="mb-0">13 Bloekomboom Street<br>Heidelberg, Gauteng, 1441</p>
+          </div>
+
+          <div class="col">
+            <h3 class="h6 text-uppercase mb-2" style="color: var(--brand-green); letter-spacing: 1px;">Office Hours</h3>
+            <p class="mb-1">Mon &ndash; Fri: 08:00 &ndash; 14:00</p>
+            <p class="mb-0 small">Sunday services 09:30 &amp; 18:00</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         DEVELOPER NOTE: CONTACT FORM — NOW USING FORMSPREE
+         UPDATED per client request to make this genuinely work
+         (submit silently with a confirmation message) instead of the
+         earlier mailto: approach, which required the visitor to have
+         an email app configured and press "send" themselves.
+         Formspree (https://formspree.io) is a free service built
+         exactly for this: it receives your form's submission and
+         forwards it to your email — no backend/server code needed on
+         your side at all.
+         TO ACTIVATE THIS — ONE-TIME SETUP (a few minutes):
+           1. Go to https://formspree.io and sign up (free plan
+              covers 50 submissions/month, plenty for a small church
+              site's contact form).
+           2. Create a new form, and set its destination email to
+              admin@lifeministries.co.za.
+           3. Formspree gives you a unique endpoint URL, e.g.
+              https://formspree.io/f/abcd1234
+           4. Replace "YOUR_FORM_ID" in the form's action="" attribute
+              a few lines below with YOUR real ID from step 3 (just
+              the abcd1234 part, keep the rest of the URL as-is).
+         Until step 4 is done, the form will not actually deliver
+         anywhere — it needs that real ID to know where to send
+         submissions.
+         HOW IT WORKS: the form submits in the background via
+         JavaScript (fetch — see js/script.js section 5) instead of
+         reloading the page. On success, a green confirmation message
+         appears in #formStatus below and the fields clear; on
+         failure, a red error message appears instead so the visitor
+         knows to try again or contact you another way.
+         ============================================================ -->
+    <section class="section-spacing reveal-on-scroll" aria-label="Send us a message">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="text-center mb-4">
+              <h2 class="h3" style="color: var(--brand-navy);">Send Us a Message</h2>
+              <p class="text-muted">Fill in the form and someone from the team will get back to you soon.</p>
+            </div>
+
+            <!-- This div starts empty and hidden — script.js reveals
+                 it with a success or error message once the form is
+                 submitted, so the visitor gets clear feedback without
+                 the page reloading. -->
+            <div id="formStatus" class="alert d-none" role="alert"></div>
+
+            <form id="contactForm" action="https://formspree.io/f/mrpzvnbb" method="POST">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="contact-name" class="form-label fw-semibold">Name</label>
+                  <input type="text" class="form-control" id="contact-name" name="Name" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="contact-email" class="form-label fw-semibold">Email</label>
+                  <input type="email" class="form-control" id="contact-email" name="Email" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="contact-phone" class="form-label fw-semibold">Phone</label>
+                  <input type="tel" class="form-control" id="contact-phone" name="Phone" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="contact-subject" class="form-label fw-semibold">Subject</label>
+                  <input type="text" class="form-control" id="contact-subject" name="Subject" required>
+                </div>
+                <div class="col-12">
+                  <label for="contact-message" class="form-label fw-semibold">Message</label>
+                  <textarea class="form-control" id="contact-message" name="Message" rows="5" required></textarea>
+                </div>
+                <div class="col-12 text-center">
+                  <button type="submit" id="contactSubmitBtn" class="btn link-card-btn px-4">Send Message</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         DEVELOPER NOTE: FIND US (EMBEDDED GOOGLE MAP)
+         Uses the exact embed URL from the live site — a plain
+         Google Maps "search" embed (no API key required, unlike
+         Google's newer Maps JavaScript API). The ratio-16x9 wrapper
+         is the same responsive-embed technique used for the YouTube
+         video on the Our Church page.
+         ============================================================ -->
+    <section class="section-spacing bg-light reveal-on-scroll" aria-label="Find us on the map">
+      <div class="container">
+        <div class="text-center mb-4">
+          <p class="text-uppercase fw-bold small mb-1" style="color: var(--brand-green); letter-spacing: 1px;">Find Us</p>
+          <h2 class="h3 mb-2" style="color: var(--brand-navy);">13 Bloekomboom Street, Heidelberg, Gauteng, 1441</h2>
+          <a href="https://www.google.com/maps/search/?api=1&query=13+Bloekomboom+Street+Heidelberg+Gauteng+1441" target="_blank" rel="noopener noreferrer" class="btn link-card-btn mb-4">Get Directions</a>
+        </div>
+        <div class="ratio ratio-16x9 mx-auto shadow" style="max-width: 900px;">
+          <iframe src="https://maps.google.com/maps?q=13+Bloekomboom+Street+Heidelberg+Gauteng+1441&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                  title="Map showing Life Ministries location"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+<footer class="footer">
+    <div class="text-center py-4 bg-white">
+      <div class="d-flex justify-content-center gap-3">
+        <a href="https://www.facebook.com/LMinistries/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="footer-social-btn">
+          <i class="bi bi-facebook" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.youtube.com/channel/UC44tvG1QtsGZd-dPXgL7Evg" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="footer-social-btn">
+          <i class="bi bi-youtube" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-bar text-center py-3">
+      <p class="mb-0 small">
+        Designed by <strong>VanillaTech</strong> &nbsp;|&nbsp; Service every Sunday 9:30 &amp; 18:00
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

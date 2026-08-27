@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+  <!-- ============================================================
+       DEVELOPER NOTE: DOCUMENT HEAD
+       This section holds metadata used by browsers and search
+       engines. Nothing here is visible on the page itself, but it
+       strongly affects SEO (Search Engine Optimization) and how
+       the site looks when shared on social media.
+       ============================================================ -->
+
+  <meta charset="UTF-8">
+
+  <!-- Responsive viewport tag: tells mobile/tablet browsers to render
+       the page at the device's actual width instead of zooming out
+       to fit a "desktop" layout. Required for any mobile-friendly site. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary SEO tags -->
+  <title>Media — Life Ministries</title>
+  <meta name="description" content="Watch the latest sermon, browse past messages, see photos and announcements, and follow our Facebook updates.">
+  <meta name="keywords" content="Life Ministries, Christian church Heidelberg, Christian school Heidelberg, Sunday service, Bible study, youth group, Life Ministries Christian School, Heidelberg Gauteng church">
+  <meta name="author" content="Life Ministries">
+  <meta name="robots" content="index, follow">
+
+  <!-- Canonical URL: tells search engines the "official" address of this
+       page so duplicate copies (http vs https, trailing slash, etc.)
+       don't split your SEO ranking. UPDATE this to your real domain. -->
+  <link rel="canonical" href="https://lifeministries.co.za/media.html">
+
+  <!-- Open Graph tags: control how the page looks when someone shares
+       the link on Facebook, WhatsApp, LinkedIn, etc. -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Media — Life Ministries">
+  <meta property="og:description" content="Watch the latest sermon, browse past messages, see photos and announcements, and follow our Facebook updates.">
+  <meta property="og:url" content="https://lifeministries.co.za/media.html">
+  <meta property="og:site_name" content="Life Ministries">
+  <meta property="og:locale" content="en_ZA">
+  <meta property="og:image" content="images/our-church/church-building.jpg">
+
+  <!-- Twitter Card tags: same idea as Open Graph, but for Twitter/X -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Media — Life Ministries">
+  <meta name="twitter:description" content="Watch the latest sermon, browse past messages, see photos and announcements, and follow our Facebook updates.">
+
+  <!-- Favicon (browser tab icon). Replace with your own icon file. -->
+  <link rel="icon" type="image/png" href="images/shared/logo.png">
+
+  <!-- ============================================================
+       DEVELOPER NOTE: STRUCTURED DATA (JSON-LD)
+       This block is invisible to visitors but read by search engines
+       (Google, Bing) to understand "this is a Church" and can enable
+       rich results (e.g. showing service times directly in search).
+       Schema type used: "Church" (a subtype of "Organization").
+       ============================================================ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Church",
+    "name": "Life Ministries",
+    "url": "https://lifeministries.co.za/",
+    "logo": "images/shared/logo.png",
+    "image": "images/our-church/church-building.jpg",
+    "telephone": "+27163496954",
+    "email": "admin@lifeministries.co.za",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Heidelberg",
+      "addressRegion": "Gauteng",
+      "addressCountry": "ZA"
+    },
+    "sameAs": [
+      "https://www.facebook.com/LMinistries/",
+      "https://www.youtube.com/channel/UC44tvG1QtsGZd-dPXgL7Evg"
+    ]
+  }
+  </script>
+
+  <!-- ============================================================
+       DEVELOPER NOTE: BOOTSTRAP CSS (from CDN)
+       Bootstrap is a CSS framework that provides a responsive grid
+       system (container/row/col classes) and pre-built components
+       (navbar, cards, buttons) so the page automatically adapts to
+       phone, tablet and desktop screen widths without custom media
+       queries for most of the layout.
+       NOTE: This is loaded from a CDN, which requires an internet
+       connection. If you need this page to work 100% offline,
+       download bootstrap.min.css and bootstrap.bundle.min.js into
+       a /vendor folder and change these paths to point there.
+       ============================================================ -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons (used for the phone/email/social icons) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+  <!-- Our own custom stylesheet, loaded AFTER Bootstrap so our rules
+       can override Bootstrap's defaults where needed. -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <a class="visually-hidden-focusable skip-link" href="#main-content">Skip to main content</a>
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm py-2" aria-label="Main navigation">
+      <div class="container">
+
+        <!-- Logo / site name. Wrapping the logo in a link back to "/"
+             is standard practice: it doubles as a "home" button. -->
+        <a class="navbar-brand" href="index.html">
+          <img src="images/shared/logo.png" alt="Life Ministries logo" height="60" width="180">
+        </a>
+
+        <!-- Hamburger toggle button, only visible below the "lg" breakpoint.
+             LEARNING NOTE: data-bs-toggle and data-bs-target are called
+             "data attributes" — any attribute you make up starting with
+             data- is valid HTML and does nothing on its own, but
+             JavaScript (in this case, Bootstrap's own bundled JS) can
+             read it to decide what to do. Here, Bootstrap's script sees
+             data-bs-toggle="collapse" and data-bs-target="#mainNavbar"
+             and wires this button up to show/hide the element with
+             id="mainNavbar" below — all without us writing any custom
+             JavaScript ourselves.
+             The aria-* attributes (aria-controls, aria-expanded,
+             aria-label) are ACCESSIBILITY attributes: they don't
+             change how the button LOOKS, only what a screen reader
+             announces to a blind/low-vision visitor using it. -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#mainNavbar" aria-controls="mainNavbar"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Collapsible nav links -->
+        <div class="collapse navbar-collapse" id="mainNavbar">
+          <!-- LEARNING NOTE: expanded from the original 4-item nav to
+               the client's requested 8-item structure. "I'm New" is
+               intentionally placed near the end, right before
+               Contact — that ordering is a common pattern on church
+               sites: it lets a first-time visitor find their way to
+               "what do I do if I've never been here" without it
+               competing for attention with the primary Church/School
+               navigation up front. -->
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
+            <li class="nav-item">
+              <!-- aria-current="page" tells assistive tech + SEO crawlers
+                   this is the current page, matching Home in the top nav -->
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="our-church.html">Our Church</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="our-school.html">Our School</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="ministries.html">Ministries</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="events.html">Events</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="media.html">Media</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="im-new.html">I'm New</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ============================================================
+         DEVELOPER NOTE: PAGE INTRO
+         ============================================================ -->
+    <section class="section-spacing text-center reveal-on-scroll" aria-label="Media introduction">
+      <div class="container">
+        <p class="text-uppercase fw-bold small mb-2" style="color: var(--brand-green); letter-spacing: 2px;">Watch &amp; Follow</p>
+        <div class="accent-underline mx-auto mb-4"></div>
+        <h1 class="h2 mb-3" style="color: var(--brand-navy);">Media</h1>
+        <p class="text-muted mx-auto fs-5" style="max-width: 680px;">
+          Catch up on the latest sermon, browse photos from church and school life, and stay in the loop with our announcements and Facebook updates.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         DEVELOPER NOTE: LATEST SERMON + "BROWSE PREVIOUS SERMONS"
+         Uses the same genuinely auto-updating YouTube Data API
+         technique as our-church.html. Both pages' embeds get updated
+         together automatically by the same script.js code, since
+         both iframes share the id="sermonFrame".
+         FULL STEP-BY-STEP SETUP GUIDE: see the big comment block at
+         the top of js/script.js, right above where YOUTUBE_API_KEY is
+         defined — that's the one authoritative copy of the setup
+         instructions (getting a free, domain-restricted API key from
+         Google Cloud Console); this page and our-church.html both
+         point there rather than repeating the steps twice.
+         HONEST LIMITATION: for a true "pick any past sermon by date"
+         picker, we'd need each individual video's real YouTube video
+         ID and date — data the API technique above doesn't provide
+         in one simple call. Rather than fabricate fake video IDs
+         that would show broken/incorrect videos, this links directly
+         to the channel's own YouTube "Videos" tab, where every past
+         upload already exists with its real date, fully browsable —
+         genuinely functional, not a mockup.
+         UPGRADE PATH: once the client wants a true in-page picker for
+         past sermons (not just "latest"), a proper dropdown/button
+         list swapping the iframe's src on click can be built the
+         same way the Events calendar was — see the commented-out
+         example function below for the pattern.
+         ============================================================ -->
+    <section class="section-spacing reveal-on-scroll" aria-label="Latest sermon">
+      <div class="container">
+        <div class="text-center mb-4">
+          <p class="text-uppercase fw-bold small mb-1" style="color: var(--brand-green); letter-spacing: 1px;">Watch</p>
+          <h2 class="h3" style="color: var(--brand-navy);">Latest Sermon</h2>
+        </div>
+        <div class="ratio ratio-16x9 mx-auto shadow" style="max-width: 900px;">
+        <iframe id="sermonFrame" src="https://www.youtube-nocookie.com/embed/YFl4vyFzpAQ"
+                  title="Latest sermon from Life Ministries"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                  loading="lazy"></iframe>
+        </div>
+        <div class="text-center mt-4">
+          <a href="https://www.youtube.com/channel/UC44tvG1QtsGZd-dPXgL7Evg/videos" target="_blank" rel="noopener noreferrer" class="btn link-card-btn">Browse Previous Sermons on YouTube</a>
+        </div>
+        <!--
+          UPGRADE-PATH EXAMPLE (commented out — not live code):
+          Once real past-sermon video IDs are available, a picker
+          could work like this in a dedicated media.js file:
+
+          var SERMONS = [
+            { videoId: "REAL_ID_1", title: "Walking in Faith", date: "2026-08-16" },
+            { videoId: "REAL_ID_2", title: "The Good Shepherd", date: "2026-08-09" }
+          ];
+          // Render one button per sermon; clicking it sets:
+          //   document.getElementById('sermonFrame').src =
+          //     "https://www.youtube.com/embed/" + sermon.videoId;
+          // — same swap-the-iframe-src technique used by the
+          // Events page's calendar for jumping to event details.
+        -->
+      </div>
+    </section>
+
+    <!-- ============================================================
+         DEVELOPER NOTE: FACEBOOK PAGE PLUGIN (live, auto-syncing)
+         Unlike the sermon archive above, this genuinely CAN sync
+         live with Facebook automatically, with no manual updates —
+         this is Facebook's own official "Page Plugin" embed,
+         provided for free for any public Facebook Page.
+         WHY IT MIGHT SHOW JUST A "FOLLOW" CARD INSTEAD OF FULL POSTS:
+         Facebook's plugin only renders fully (the "timeline" tab
+         showing actual recent posts) under certain conditions:
+           1. The page must be viewed over a real https:// domain —
+              it will not show full content from a local file or an
+              http-only (non-secure) address.
+           2. Facebook increasingly favours domains that are
+              registered to a Facebook App (free to create at
+              developers.facebook.com) with this site's real domain
+              added to that app's allowed domains list. Without that,
+              Facebook sometimes falls back to a minimal "Follow"
+              card instead of the full timeline, especially for
+              pages/domains it hasn't seen much traffic from yet.
+         WHAT TO DO: once this site is hosted on its real domain,
+         create a free Facebook App, add the live domain under
+         Settings → Basic → App Domains, and add
+         "&appId=YOUR_APP_ID" to the SDK script URL near the bottom
+         of this file. This significantly improves how reliably the
+         full timeline renders. Even with all of that, Facebook's
+         plugin behaviour can vary — the direct link below is kept
+         as a guaranteed-to-work fallback either way.
+         ============================================================ -->
+    <section class="section-spacing bg-light reveal-on-scroll" aria-label="Facebook updates">
+      <div class="container">
+        <div class="text-center mb-4">
+          <p class="text-uppercase fw-bold small mb-1" style="color: var(--brand-green); letter-spacing: 1px;">Follow Along</p>
+          <h2 class="h3" style="color: var(--brand-navy);">Latest From Facebook</h2>
+        </div>
+        <div class="d-flex justify-content-center">
+          <div id="fb-root"></div>
+          <div class="fb-page"
+               data-href="https://www.facebook.com/LMinistries/"
+               data-tabs="timeline"
+               data-width="500"
+               data-height="600"
+               data-small-header="false"
+               data-adapt-container-width="true"
+               data-hide-cover="false"
+               data-show-facepile="true">
+            <blockquote cite="https://www.facebook.com/LMinistries/" class="fb-xfbml-parse-ignore">
+              <a href="https://www.facebook.com/LMinistries/">Life Ministries</a>
+            </blockquote>
+          </div>
+        </div>
+        <!-- Guaranteed-to-work fallback, regardless of how the
+             widget above renders in any given browser/setup. -->
+        <div class="text-center mt-4">
+          <a href="https://www.facebook.com/LMinistries/" target="_blank" rel="noopener noreferrer" class="btn link-card-btn">View Our Facebook Page</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         DEVELOPER NOTE: PHOTO GALLERY
+         Uses the real photos already supplied for other pages
+         (church building, school building, sport photos) as a
+         starting gallery — swap in dedicated event/candid photos
+         once the client provides them. A simple CSS grid, each photo
+         linking to its own full-size file in a new tab (a lightweight
+         "lightbox" without needing an extra JavaScript library).
+         ============================================================ -->
+    <section class="section-spacing reveal-on-scroll" aria-label="Photo gallery">
+      <div class="container">
+        <div class="text-center mb-4">
+          <p class="text-uppercase fw-bold small mb-1" style="color: var(--brand-green); letter-spacing: 1px;">Gallery</p>
+          <h2 class="h3" style="color: var(--brand-navy);">Photos</h2>
+        </div>
+        <div class="gallery-grid">
+          <a href="images/our-church/church-building.jpg" target="_blank" rel="noopener noreferrer" class="gallery-item">
+            <img src="images/our-church/church-building.jpg" alt="Life Ministries church building" loading="lazy">
+          </a>
+          <a href="images/our-school/school-building.jpg" target="_blank" rel="noopener noreferrer" class="gallery-item">
+            <img src="images/our-school/school-building.jpg" alt="Life Ministries school buildings" loading="lazy">
+          </a>
+          <a href="images/our-school/soccer.jpg" target="_blank" rel="noopener noreferrer" class="gallery-item">
+            <img src="images/our-school/soccer.jpg" alt="Learners playing soccer" loading="lazy">
+          </a>
+          <a href="images/our-school/cross-country.jpg" target="_blank" rel="noopener noreferrer" class="gallery-item">
+            <img src="images/our-school/cross-country.jpg" alt="Learners running cross-country" loading="lazy">
+          </a>
+          <a href="images/our-school/air-rifle-shooting.jpg" target="_blank" rel="noopener noreferrer" class="gallery-item">
+            <img src="images/our-school/air-rifle-shooting.jpg" alt="Learner practising air rifle shooting" loading="lazy">
+          </a>
+          <a href="images/index/link-our-church.jpg" target="_blank" rel="noopener noreferrer" class="gallery-item">
+            <img src="images/index/link-our-church.jpg" alt="Person worshipping at sunrise" loading="lazy">
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         DEVELOPER NOTE: ANNOUNCEMENTS
+         PLACEHOLDER CONTENT — swap for real announcements once the
+         client supplies them. Same card pattern used elsewhere on
+         the site.
+         ============================================================ -->
+    <section class="section-spacing bg-light reveal-on-scroll" aria-label="Announcements">
+      <div class="container">
+        <div class="text-center mb-4">
+          <p class="text-uppercase fw-bold small mb-1" style="color: var(--brand-green); letter-spacing: 1px;">Stay Informed</p>
+          <h2 class="h3" style="color: var(--brand-navy);">Announcements</h2>
+        </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+
+          <div class="col">
+            <div class="card h-100 shadow-sm border-0">
+              <div class="card-body">
+                <h3 class="h6 card-title fw-bold" style="color: var(--brand-navy);">New School Term Begins</h3>
+                <p class="card-text text-muted small">Life Ministries Christian School welcomes learners back with a fresh timetable of activities.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100 shadow-sm border-0">
+              <div class="card-body">
+                <h3 class="h6 card-title fw-bold" style="color: var(--brand-navy);">Building Fund Update</h3>
+                <p class="card-text text-muted small">Thank you to everyone who has given towards our building fund &mdash; an update on progress is coming soon.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100 shadow-sm border-0">
+              <div class="card-body">
+                <h3 class="h6 card-title fw-bold" style="color: var(--brand-navy);">New Sermon Series</h3>
+                <p class="card-text text-muted small">Join us this Sunday as we begin a new sermon series &mdash; watch it here once it's live.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+<footer class="footer">
+    <div class="text-center py-4 bg-white">
+      <div class="d-flex justify-content-center gap-3">
+        <a href="https://www.facebook.com/LMinistries/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="footer-social-btn">
+          <i class="bi bi-facebook" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.youtube.com/channel/UC44tvG1QtsGZd-dPXgL7Evg" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="footer-social-btn">
+          <i class="bi bi-youtube" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-bar text-center py-3">
+      <p class="mb-0 small">
+        Designed by <strong>VanillaTech</strong> &nbsp;|&nbsp; Service every Sunday 9:30 &amp; 18:00
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/script.js"></script>
+  <!-- Facebook's official SDK script, required for the "fb-page" Page
+       Plugin embed above to actually render and sync live posts.
+       Only loaded on this page since no other page uses it. async
+       defer means it won't block the rest of the page from loading
+       while it fetches. -->
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0"></script>
+</body>
+</html>

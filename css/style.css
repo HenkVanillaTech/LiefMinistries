@@ -1,0 +1,804 @@
+/* =====================================================================
+   LEARNING PRIMER — READ THIS FIRST IF YOU'RE NEW TO CSS
+   =====================================================================
+   WHAT IS CSS?
+   HTML describes structure ("this is a paragraph"); CSS describes
+   appearance ("that paragraph should be blue and centered"). Every
+   CSS rule follows the same basic shape:
+
+       selector {
+         property: value;
+       }
+
+   The SELECTOR says WHICH element(s) to style. The stuff inside the
+   curly braces is a list of PROPERTY: VALUE; pairs saying HOW to
+   style them. For example:
+
+       .card-title {
+         color: #1b2a4a;
+         font-weight: 700;
+       }
+
+   This finds every element with class="card-title" anywhere in the
+   HTML and makes its text that navy colour and bold. Every rule ends
+   with a semicolon — leaving one off is one of the most common CSS
+   bugs, since it silently breaks that line without an error message.
+
+   COMMON SELECTOR TYPES YOU'LL SEE IN THIS FILE:
+   - .some-class      → matches any element with class="some-class"
+   - #some-id         → matches the one element with id="some-id"
+   - element           → matches every element of that tag, e.g. body
+                          matches every <body> (there's only ever one)
+   - .parent .child    → matches .child, but ONLY when it's nested
+                          somewhere inside .parent (a "descendant"
+                          selector — note the space between them)
+   - .a, .b            → a comma means "OR": matches anything with
+                          class a, plus anything with class b
+   - .thing:hover      → a "pseudo-class" — matches .thing only while
+                          the mouse is hovering over it. :focus is
+                          similar but for keyboard focus.
+   - .thing::after     → a "pseudo-element" — lets you insert an
+                          extra, invisible-in-HTML box right after an
+                          element's content, purely via CSS. Used in
+                          this file for the carousel's text-readability
+                          gradient — see section 6 below.
+
+   THE BOX MODEL (the single most important CSS concept)
+   Every single HTML element is treated as a rectangular box, made of
+   4 layers, from the inside out:
+     content → padding → border → margin
+   PADDING is space INSIDE the box, between the content and its edge
+   (e.g. the "breathing room" inside a button, around its text).
+   BORDER is a visible line drawn at the box's edge.
+   MARGIN is space OUTSIDE the box, pushing other elements away from
+   it. A classic beginner mix-up: "why is there a gap between my two
+   boxes?" is almost always margin, not padding.
+
+   POSITION: THE PROPERTY THAT CONFUSES EVERYONE AT FIRST
+   By default every element is "position: static" — it just flows
+   down the page in normal reading order. This file uses two other
+   values a lot:
+   - position: relative — the element still takes up its normal
+     spot in the page flow, but it now becomes an "anchor point" that
+     any ABSOLUTELY positioned element inside it can be measured
+     against.
+   - position: absolute — the element is taken OUT of the normal
+     page flow entirely (other elements act as if it isn't there,
+     and it can overlap them) and is instead positioned using
+     top/right/bottom/left, measured from the nearest ANCESTOR that
+     has position: relative (or absolute/fixed) set on it.
+   The pattern "parent has position: relative, child has position:
+   absolute" is used repeatedly below — for example the caption text
+   box sitting on top of each carousel photo. Search this file for
+   both properties together to see it in action.
+
+   CSS VARIABLES (the --brand-navy style names below)
+   Section 1 below defines a handful of custom names starting with
+   two dashes, each holding a colour. Anywhere else in this file you
+   can write var(--brand-navy) instead of retyping #1b2a4a — and if
+   you ever want to change the site's whole colour scheme, you edit
+   the value ONCE at the top instead of hunting through the entire
+   file for every place that colour was used.
+
+   RESPONSIVE DESIGN & MEDIA QUERIES
+   A "media query" is a CSS rule that only applies when the browser
+   window matches some condition — most often a maximum or minimum
+   width. Near the bottom of this file you'll find:
+
+       @media (max-width: 767.98px) {
+         ... rules here only apply on screens 767.98px wide or less ...
+       }
+
+   This is how a page can look different on a phone vs. a desktop
+   using the SAME html file — the CSS itself adapts. Bootstrap (the
+   framework this site is built on) has its own built-in breakpoints
+   baked into classes like col-md-6 or navbar-expand-lg, which is why
+   most of this file doesn't NEED custom media queries — Bootstrap is
+   already handling responsiveness for anything using its grid/
+   component classes. We only add our own media query where we need
+   to override something Bootstrap doesn't cover (see section 9).
+
+   SPECIFICITY (why a style sometimes "doesn't work")
+   When two different CSS rules both try to style the same element,
+   the browser has to decide which one wins. Very roughly, more
+   SPECIFIC selectors beat more general ones: an #id beats a .class,
+   which beats a plain element selector. A rule written with
+   !important (you'll see this once or twice below, e.g. on
+   .section-dark) forcibly overrides normal specificity rules — it's
+   a blunt tool, best used sparingly, mainly reserved here for
+   overriding Bootstrap's own built-in styles where a lower-priority
+   override wouldn't win.
+   ===================================================================== */
+
+/* =====================================================================
+   DEVELOPER NOTES — style.css
+   Custom rules layered on top of Bootstrap 5. Colours/measurements
+   below were matched by eye against screenshots of the live site,
+   so treat exact hex values as "close approximations" rather than
+   pixel-perfect originals — swap the CSS variables below if you have
+   the brand's real colour codes.
+   ===================================================================== */
+
+/* ---------------------------------------------------------------------
+   1. BRAND VARIABLES
+   Each of these is a CSS variable (also called a "custom property").
+   The -- prefix is required syntax — it's what marks a name as a
+   variable rather than an actual CSS property. Defining them inside
+   :root makes them available to EVERY selector in this entire file.
+   --------------------------------------------------------------------- */
+:root {
+  --brand-navy: #1b2a4a;       /* dark navy used for big background sections */
+  --brand-navy-light: #24365c; /* slightly lighter navy, used on caption pills */
+  --brand-green: #8faf4f;      /* olive-green accent for CTA buttons */
+  --brand-green-dark: #7a983f; /* hover state for the green buttons */
+  --brand-fb-blue: #3b5998;    /* Facebook brand blue used on the round icon */
+  --brand-yt-red: #e0201b;     /* YouTube brand red used on the round icon */
+  --brand-ig: linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7); /* Instagram's real logo uses a gradient, not a flat colour */
+  --brand-khaki: #b8a67d; /* the client's brief mentioned Navy/White/Khaki as a palette option — used for the "Youth" event category */
+  --pill-bg: #e8ecef;          /* light grey used for the verse "pill" card */
+}
+
+body {
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  color: #2b2b2b;
+}
+
+/* ---------------------------------------------------------------------
+   2. SKIP LINK
+   --------------------------------------------------------------------- */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--brand-navy);
+  color: #fff;
+  padding: 8px 16px;
+  z-index: 1050;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* ---------------------------------------------------------------------
+   3. NAVBAR
+   --------------------------------------------------------------------- */
+.navbar-brand img {
+  width: auto;
+  max-height: 60px;
+}
+.nav-link {
+  font-weight: 500;
+  color: var(--brand-navy) !important;
+}
+.nav-link.active {
+  font-weight: 700;
+  color: var(--brand-green) !important;
+  border-bottom: 2px solid var(--brand-green);
+}
+
+/* ---------------------------------------------------------------------
+   4. STATIC HERO BANNER
+   A single full-width photo, not a carousel. object-fit: cover crops
+   it cleanly to any screen width/height without distortion, while
+   staying a real <img> tag (better for SEO than a CSS background).
+   --------------------------------------------------------------------- */
+.hero-banner {
+  overflow: hidden;
+}
+.hero-banner-img {
+  height: 70vh;
+  min-height: 280px;
+  max-height: 580px;
+  object-fit: cover;
+  display: block;
+}
+
+/* ---------------------------------------------------------------------
+   5. SOCIAL LINKS BAR (round icon buttons under the hero)
+   --------------------------------------------------------------------- */
+.social-btn-link {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.social-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.4rem;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+.social-btn-fb { background-color: var(--brand-fb-blue); }
+.social-btn-yt { background-color: var(--brand-yt-red); }
+.social-btn-ig { background: var(--brand-ig); }
+.social-btn-link:hover .social-btn,
+.social-btn-link:focus .social-btn {
+  transform: translateY(-3px);
+  filter: brightness(1.1);
+}
+.social-btn-label {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--brand-navy);
+}
+
+/* ---------------------------------------------------------------------
+   6. PHOTO CAROUSEL (the real, rotating one)
+   Each slide is darkened slightly with a gradient so the caption
+   box on the right stays readable against any photo. The caption is
+   positioned absolutely within the slide, vertically centered,
+   aligned to the right on desktop, and re-centered on mobile (see
+   the media query at the bottom of this file).
+   --------------------------------------------------------------------- */
+.info-carousel {
+  position: relative;
+  background-color: #fff;
+}
+.info-carousel-img {
+  height: 65vh;
+  min-height: 380px;
+  max-height: 620px;
+  object-fit: cover;
+}
+.info-carousel .carousel-item {
+  /* LEARNING NOTE: this is the "anchor" half of the relative/absolute
+     pairing explained in the primer at the top of this file. Setting
+     position: relative here does nothing visible by itself — but it
+     means the .info-carousel-caption element below (which uses
+     position: absolute) will now be positioned relative to THIS box,
+     not relative to the whole page. */
+  position: relative;
+}
+/* LEARNING NOTE: earlier drafts of this file put a dark gradient
+   here (a ::after pseudo-element) to darken the photo behind the
+   caption text for readability. That's been removed — every slide's
+   caption now sits inside a solid .caption-box background (see
+   below) instead of floating directly on the photo, so the text is
+   readable on its own without needing to tint the image at all.
+   Keeping this note so future editors know that approach was tried
+   and intentionally dropped, not just forgotten. */
+.info-carousel-caption {
+  /* LEARNING NOTE: this is the "positioned" half of the pairing.
+     Because the nearest ancestor with position: relative is the
+     .carousel-item above, top/right here are measured from THAT
+     box's edges, not the browser window's edges — so this caption
+     stays correctly placed on top of whichever photo is currently
+     showing, no matter where that photo sits on the page. */
+  position: absolute;
+  top: 50%;
+  right: 8%;
+  /* translateY(-50%) shifts the box up by exactly half of its OWN
+     height. Combined with top: 50%, this is the standard trick for
+     truly vertically centering a box of unknown/variable height. */
+  transform: translateY(-50%);
+  text-align: center;
+  max-width: 320px;
+  /* z-index only has any effect on a positioned element (one with
+     position set to something other than static — this one is
+     absolute, so it qualifies). A higher z-index paints ON TOP OF
+     lower ones when two positioned elements overlap — kept here
+     even though the gradient it was originally guarding against
+     is gone, since the caption should still stack above the photo
+     itself if anything else absolute gets added here later. */
+  z-index: 2;
+}
+.caption-title {
+  background-color: var(--brand-navy-light);
+  color: #fff;
+  font-weight: 700;
+  padding: 0.6rem 1.5rem;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+  display: inline-block;
+  /* Small drop-shadow lifts the title pill visually off the photo
+     behind it, regardless of how bright or dark that photo is. */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+}
+.caption-box {
+  background-color: var(--pill-bg);
+  color: #1b2a4a;
+  padding: 0.9rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 500;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+.caption-box a {
+  color: inherit;
+  text-decoration: none;
+}
+.caption-box a:hover {
+  text-decoration: underline;
+}
+.badge-age {
+  display: inline-block;
+  background-color: var(--brand-green);
+  color: #fff;
+  font-weight: 700;
+  padding: 0.5rem 1.25rem;
+  border-radius: 30px;
+  font-size: 0.9rem;
+}
+
+/* Bootstrap's default indicator dots + controls, recoloured to sit
+   nicely on dark photos */
+.info-carousel .carousel-indicators {
+  top: 12px;
+  bottom: auto;
+  margin-top: 0;
+}
+.info-carousel .carousel-indicators [data-bs-target] {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+}
+.info-carousel .carousel-indicators .active {
+  background-color: #fff;
+}
+.info-carousel .carousel-control-prev-icon,
+.info-carousel .carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.35);
+  border-radius: 50%;
+  padding: 20px;
+  background-size: 50%;
+}
+
+/* ---------------------------------------------------------------------
+   7. DARK SECTION: "OUR CHURCH" / "OUR SCHOOL" + VERSE
+   One continuous navy section (matches the live site, where both
+   blocks share the same background) finished with a diagonal cut at
+   the bottom via clip-path, instead of a straight edge.
+   --------------------------------------------------------------------- */
+.section-dark {
+  background-color: var(--brand-navy);
+  color: #fff;
+  position: relative;
+  padding-bottom: 6rem !important;
+}
+.link-card-img {
+  height: 280px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+  filter: brightness(0.92);
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+.link-card:hover .link-card-img,
+.link-card:focus .link-card-img {
+  filter: brightness(1.05);
+  transform: scale(1.02);
+}
+.link-card-btn {
+  background-color: var(--brand-green);
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+  padding: 0.6rem 2rem;
+  border-radius: 30px;
+  transition: background-color 0.2s ease;
+}
+.link-card:hover .link-card-btn,
+.link-card:focus .link-card-btn {
+  background-color: var(--brand-green-dark);
+}
+
+/* The verse "pill" — light grey rounded card sitting inside the
+   dark section */
+.verse-pill {
+  background-color: var(--pill-bg);
+  color: var(--brand-navy);
+  border-radius: 60px;
+  padding: 2.5rem 3rem;
+  max-width: 700px;
+}
+.verse-pill .blockquote p {
+  font-size: 1.15rem;
+  font-style: italic;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Diagonal cut along the bottom edge of the dark section, revealing
+   the white footer behind it. clip-path is used instead of an image
+   so it renders crisply at any screen width.
+   LEARNING NOTE: bottom: -2px (instead of 0) intentionally pushes
+   this element 2px past the section's actual bottom edge, slightly
+   overlapping the footer below. clip-path edges can leave a faint
+   1px hairline from sub-pixel anti-aliasing where the shape's edge
+   meets the next element — overlapping by a couple of pixels hides
+   that seam completely since there's no longer a hard boundary for
+   the browser to render imprecisely. */
+.section-dark-cut {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 5rem;
+  background-color: #fff;
+  clip-path: polygon(0 100%, 100% 40%, 100% 100%);
+}
+
+/* ---------------------------------------------------------------------
+   8. FOOTER
+   Round dark social buttons, then a dark bottom credit bar.
+   --------------------------------------------------------------------- */
+.footer {
+  /* Explicitly zeroing these out is a defensive habit — some
+     browsers' default stylesheets add a faint top border or margin
+     to certain block-level elements, and it's easy to mistake that
+     for a bug in your own CSS if you don't rule it out directly. */
+  border: none;
+  box-shadow: none;
+  margin: 0;
+}
+.footer-social-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--brand-navy-light);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+.footer-social-btn:hover {
+  background-color: var(--brand-navy);
+}
+.footer-bar {
+  background-color: var(--brand-navy);
+  color: #cfd6e2;
+}
+.footer-bar strong {
+  color: #fff;
+}
+
+/* ---------------------------------------------------------------------
+   9. RESPONSIVE ADJUSTMENTS
+   LEARNING NOTE: see the "RESPONSIVE DESIGN & MEDIA QUERIES" part of
+   the primer at the top of this file for the concept. In short:
+   everything inside the curly braces below is NORMALLY ignored, and
+   only "switches on" once the browser window is 767.98px wide or
+   narrower (roughly: phones and small tablets held upright). Above
+   that width, the earlier rules in this file apply as normal.
+   767.98px specifically matches Bootstrap's own "md" breakpoint
+   boundary, so our custom override lines up with where Bootstrap's
+   own grid classes (like col-md-6) also change behaviour.
+   On phones/small tablets, re-center the carousel caption instead of
+   pinning it to the right, since there isn't enough width to keep it
+   clear of the photo's subject.
+   --------------------------------------------------------------------- */
+@media (max-width: 767.98px) {
+  .info-carousel-caption {
+    right: 50%;
+    transform: translate(50%, -50%);
+    max-width: 90%;
+  }
+  .verse-pill {
+    padding: 2rem 1.5rem;
+    border-radius: 30px;
+  }
+
+  /* On phones, 70vh can be much taller relative to screen width than
+     on desktop, so object-fit: cover crops in tighter and the photo
+     can look stretched/zoomed. Use a shorter, fixed-feeling height
+     instead so the crop stays natural on narrow screens. */
+  .hero-banner-img {
+    height: 45vh;
+    min-height: 260px;
+    max-height: 380px;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   10. CONSISTENT SECTION SPACING
+   LEARNING NOTE: previously, different sections used a mix of
+   Bootstrap's py-4 and py-5 utilities somewhat arbitrarily, which
+   made the page feel like separate blocks stacked up rather than one
+   cohesive flow — inconsistent gaps are a subtle but real cue that
+   breaks visual rhythm. This single class replaces that mix with one
+   shared, responsive spacing value used on every major section.
+   clamp(3rem, 6vw, 5.5rem) means: never less than 3rem, never more
+   than 5.5rem, and scales smoothly between those based on viewport
+   width — so it's naturally larger on desktop and tighter on phones
+   without needing a separate @media query.
+   --------------------------------------------------------------------- */
+.section-spacing {
+  padding-top: clamp(3rem, 6vw, 5.5rem);
+  padding-bottom: clamp(3rem, 6vw, 5.5rem);
+}
+
+/* ---------------------------------------------------------------------
+   11. "WHO WE ARE" SECTION (redesigned for visual weight/focus)
+   --------------------------------------------------------------------- */
+
+/* LEARNING NOTE: this uses TWO background layers stacked on top of
+   each other, separated by a comma — CSS reads multiple backgrounds
+   in front-to-back order, so the gradient (listed first) sits ABOVE
+   the photo (listed second) and darkens it, without needing a
+   separate overlay <div> in the HTML. This is what makes plain white
+   text readable against a busy, colourful photo — without the
+   overlay, the text would fight for attention against the flowers,
+   sky, and cross behind it. background-size/position/repeat make
+   the photo fill the whole section, centred, cropped rather than
+   stretched or tiled. background-attachment: fixed creates a subtle
+   "parallax" feel on desktop (the photo stays still while the page
+   scrolls over it) — turned off on mobile below, since it can cause
+   performance/scroll issues on phones. */
+.who-we-are-section {
+  background-image:
+    linear-gradient(180deg, rgba(8, 16, 30, 0.32) 0%, rgba(8, 16, 30, 0.42) 100%),
+    url("../images/index/who-we-are-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #fff;
+}
+@media (max-width: 991.98px) {
+  .who-we-are-section {
+    background-attachment: scroll;
+  }
+}
+
+/* LEARNING NOTE: the "WHO WE ARE" label was originally green, which
+   read fine against a plain tinted background — but against a photo
+   full of green foliage, a green label visually blends into the
+   image instead of standing apart from it. Switching it to white
+   (matching the rest of the section's text) with the same tight
+   shadow treatment keeps it legible; the green brand colour is still
+   present, just moved onto the small accent-underline below it,
+   where a thin line of colour reads as an accent rather than
+   camouflage. */
+.who-we-are-label {
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.95), 0 2px 8px rgba(0, 0, 0, 0.7), 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+/* Short accent line under the "WHO WE ARE" label — a small but
+   effective way to give a plain text label some visual anchoring
+   instead of it just floating above the heading. */
+.accent-underline {
+  width: 60px;
+  height: 3px;
+  background-color: var(--brand-green);
+  border-radius: 2px;
+}
+
+/* Bigger, bolder heading than a standard Bootstrap .h2 — this is
+   the client's core tagline, it should carry real visual weight on
+   the page, not read as a regular sub-heading. clamp() scales the
+   font size smoothly between a minimum and maximum based on the
+   viewport width, so it's naturally responsive without needing a
+   separate media query for every screen size.
+   LEARNING NOTE: this uses THREE stacked text-shadows now instead of
+   two — a tight, nearly-solid one right against the letters (crisp
+   edge), a medium one just behind that (extra depth), and a wider,
+   softer one furthest back (to hold up against the brightest parts
+   of the photo, like open sky). Stacking multiple shadows like this
+   reads as noticeably stronger/more legible than a single shadow,
+   without needing to darken the photo itself. */
+.who-we-are-heading {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.25;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.95), 0 3px 10px rgba(0, 0, 0, 0.75), 0 6px 20px rgba(0, 0, 0, 0.55);
+}
+
+/* The body paragraph and "Church • School • Youth..." line also
+   need to switch from navy (which would vanish against a dark
+   overlay) to white, with the same three-layer shadow treatment,
+   and full opacity white (not a translucent white) for maximum
+   brightness/contrast. */
+.who-we-are-section p.text-muted {
+  color: #fff !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.95), 0 2px 8px rgba(0, 0, 0, 0.7), 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+.who-we-are-section p.fw-semibold {
+  color: #fff !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.95), 0 2px 8px rgba(0, 0, 0, 0.7), 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+/* ---------------------------------------------------------------------
+   12. SCROLL-REVEAL ANIMATION
+   LEARNING NOTE: this defines two STATES for any element with the
+   class "reveal-on-scroll" — a starting state (slightly lower and
+   invisible) and a "revealed" state (its natural position, fully
+   visible), triggered by JavaScript adding the "is-visible" class
+   once the element scrolls into view (see the IntersectionObserver
+   code in script.js). The transition property makes the CHANGE
+   between those two states animate smoothly instead of snapping
+   instantly.
+   --------------------------------------------------------------------- */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Respect visitors who've asked their operating system to reduce
+   motion — an accessibility preference. When set, skip the
+   animation entirely and just show the content immediately. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   13. TRANSPARENT-OVER-HERO NAVBAR (homepage only)
+   Two states, switched by JavaScript adding/removing "navbar-scrolled"
+   on the <header> element as the visitor scrolls (see script.js
+   section 2). State 1 (default, at the top of the page): transparent
+   background, white text, sitting directly on top of the hero photo.
+   State 2 (.navbar-scrolled, after scrolling past ~10px): solid white
+   background, navy text, drop shadow — same as a normal site nav.
+   --------------------------------------------------------------------- */
+.navbar-fixed-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1030;
+  background-color: transparent;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
+}
+
+/* Default (unscrolled) state: white nav links + logo readable
+   against a photo background, with a text-shadow for contrast
+   insurance against lighter parts of any photo. */
+.navbar-fixed-overlay .nav-link {
+  color: #fff !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+.navbar-fixed-overlay .navbar-brand img {
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.5));
+}
+/* Bootstrap's default hamburger icon is a dark SVG — invisible on a
+   transparent nav over a photo. This swaps in a white-stroke version
+   using the same technique Bootstrap itself uses (an inline SVG data
+   URI as a CSS background-image). */
+.navbar-fixed-overlay .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+.navbar-fixed-overlay .navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Scrolled state: solid, opaque, same look as a conventional navbar */
+header.navbar-scrolled .navbar-fixed-overlay {
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+header.navbar-scrolled .navbar-fixed-overlay .nav-link {
+  color: var(--brand-navy) !important;
+  text-shadow: none;
+}
+header.navbar-scrolled .navbar-fixed-overlay .navbar-brand img {
+  filter: none;
+}
+header.navbar-scrolled .navbar-fixed-overlay .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(27,42,74,0.85)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+header.navbar-scrolled .navbar-fixed-overlay .navbar-toggler {
+  border-color: rgba(27, 42, 74, 0.15);
+}
+
+/* On mobile, once the hamburger menu is OPEN, force the solid/white
+   state regardless of scroll position — white text on a transparent
+   background would be unreadable against the white dropdown panel
+   Bootstrap renders underneath it. */
+.navbar-fixed-overlay:has(.navbar-collapse.show) {
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+.navbar-fixed-overlay:has(.navbar-collapse.show) .nav-link {
+  color: var(--brand-navy) !important;
+  text-shadow: none;
+}
+
+/* ---------------------------------------------------------------------
+   14. PHOTO CARDS (.info-card) — used for the Our School sport cards
+   and any future page that needs a simple "photo + title + details"
+   card. LEARNING NOTE: without a fixed height + object-fit here, an
+   <img> inside a Bootstrap .card-img-top just renders at its own
+   natural aspect ratio scaled to the card's width — which sounds
+   fine, but when several cards sit side by side and their source
+   photos have even slightly different framing/crops, the images end
+   up at different heights and can look inconsistent or oddly
+   stretched next to each other. Fixing the height and using
+   object-fit: cover (same technique used throughout this stylesheet
+   — see the hero banner and carousel rules above) crops every card's
+   photo to the exact same shape, so a row of cards always lines up
+   neatly regardless of the source images' original dimensions.
+   --------------------------------------------------------------------- */
+.info-card img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+.info-card .card-title {
+  color: var(--brand-navy);
+  font-weight: 700;
+}
+
+/* =====================================================================
+   15. EVENTS PAGE — LIVE GOOGLE CALENDAR EMBED (events.html only)
+   LEARNING NOTE: this replaced a much larger block of custom CSS that
+   styled a hand-built calendar widget (day cells, category dots, a
+   card list, etc.) — see events.html's developer note for why that
+   was swapped out. Embedding Google's own calendar means Google
+   handles all of that styling/interactivity on their end; our CSS
+   here only needs to size and frame the embed itself.
+   ===================================================================== */
+.calendar-embed-wrapper {
+  max-width: 900px;
+  border-radius: 12px;
+  overflow: hidden; /* keeps the iframe's corners clipped to match
+                        the rounded wrapper, since an iframe itself
+                        can't take a border-radius directly */
+}
+.calendar-embed-wrapper iframe {
+  width: 100%;
+  height: 600px;
+  border: none;
+  display: block;
+}
+/* Google's calendar embed gets cramped at its default height on
+   phones — give it more room to stay usable at a narrow width. */
+@media (max-width: 575.98px) {
+  .calendar-embed-wrapper iframe {
+    height: 500px;
+  }
+}
+
+/* =====================================================================
+   16. MEDIA PAGE — PHOTO GALLERY (media.html only)
+   ===================================================================== */
+
+/* LEARNING NOTE: CSS Grid again (see the calendar's comment above for
+   why) — auto-fill + minmax is a common responsive-grid trick: the
+   browser fits as many 220px-minimum columns as will comfortably fit
+   the row width, wrapping to a new row automatically, without a
+   single @media query needed for different screen sizes. */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+.gallery-item {
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 8px;
+}
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.gallery-item:hover img,
+.gallery-item:focus img {
+  transform: scale(1.05);
+}

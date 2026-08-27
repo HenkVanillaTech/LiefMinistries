@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+  <!-- ============================================================
+       DEVELOPER NOTE: DOCUMENT HEAD
+       This section holds metadata used by browsers and search
+       engines. Nothing here is visible on the page itself, but it
+       strongly affects SEO (Search Engine Optimization) and how
+       the site looks when shared on social media.
+       ============================================================ -->
+
+  <meta charset="UTF-8">
+
+  <!-- Responsive viewport tag: tells mobile/tablet browsers to render
+       the page at the device's actual width instead of zooming out
+       to fit a "desktop" layout. Required for any mobile-friendly site. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary SEO tags -->
+  <title>Christian School in Heidelberg, Gauteng — Life Ministries Christian School</title>
+  <meta name="description" content="Life Ministries Christian School — a Christian school in Heidelberg, Gauteng. Impaq curriculum grounded in Biblical values, with sport including Air Rifle Shooting, Cross Country and Soccer.">
+  <meta name="keywords" content="school Heidelberg, schools in Heidelberg, Heidelberg Gauteng schools, Christian school Heidelberg, Christian school Heidelberg Gauteng, primary school Heidelberg, private school Heidelberg, Life Ministries Christian School, Life Ministries, Christian church Heidelberg">
+  <meta name="author" content="Life Ministries">
+  <meta name="robots" content="index, follow">
+
+  <!-- Canonical URL: tells search engines the "official" address of this
+       page so duplicate copies (http vs https, trailing slash, etc.)
+       don't split your SEO ranking. UPDATE this to your real domain. -->
+  <link rel="canonical" href="https://lifeministries.co.za/our-school.html">
+
+  <!-- Open Graph tags: control how the page looks when someone shares
+       the link on Facebook, WhatsApp, LinkedIn, etc. -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Christian School in Heidelberg, Gauteng — Life Ministries Christian School">
+  <meta property="og:description" content="Life Ministries Christian School — a Christian school in Heidelberg, Gauteng. Impaq curriculum grounded in Biblical values, with sport including Air Rifle Shooting, Cross Country and Soccer.">
+  <meta property="og:url" content="https://lifeministries.co.za/our-school.html">
+  <meta property="og:site_name" content="Life Ministries">
+  <meta property="og:locale" content="en_ZA">
+  <meta property="og:image" content="images/our-school/school-building.jpg">
+
+  <!-- Twitter Card tags: same idea as Open Graph, but for Twitter/X -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Christian School in Heidelberg, Gauteng — Life Ministries Christian School">
+  <meta name="twitter:description" content="Life Ministries Christian School — a Christian school in Heidelberg, Gauteng. Impaq curriculum grounded in Biblical values, with sport including Air Rifle Shooting, Cross Country and Soccer.">
+
+  <!-- Favicon (browser tab icon). Replace with your own icon file. -->
+  <link rel="icon" type="image/png" href="images/shared/logo.png">
+
+  <!-- ============================================================
+       DEVELOPER NOTE: STRUCTURED DATA (JSON-LD) — SCHOOL-SPECIFIC
+       LOCAL SEO
+       This was previously copy-pasted from the homepage's "Church"
+       structured data — wrong schema type for a school page, and a
+       missed opportunity for local search. Rebuilt properly:
+         - "@type": "School" instead of "Church" — tells Google this
+           page IS a school, which is what makes it eligible to
+           surface for searches like "school Heidelberg" or "schools
+           in Heidelberg" in the first place. A page can't rank well
+           for local school searches if it's telling Google it's a
+           church.
+         - A full "address" with the real street address (not just
+           town/province) — Google's local search relies heavily on
+           having a complete, consistent address (this is often
+           called "NAP" — Name, Address, Phone — consistency).
+         - "geo" coordinates — Heidelberg, Gauteng's town-centre
+           coordinates (the school's own exact GPS pin wasn't
+           available, so this is a close approximation; swap in the
+           school's precise coordinates if/when known, e.g. from
+           Google Maps' "what's my location" for the exact building).
+         - "areaServed" and "keywords" reinforce the geographic/topic
+           relevance signals a bit further for local search.
+       NOTE: none of this GUARANTEES ranking — no static site can
+       promise that, since ranking also depends on things outside the
+       code entirely (a verified Google Business Profile listing,
+       real backlinks, ongoing content, reviews, etc.) — but this
+       gives Google every on-page signal it needs to correctly
+       understand and geographically place this page.
+       ============================================================ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "School",
+    "name": "Life Ministries Christian School",
+    "url": "https://lifeministries.co.za/our-school.html",
+    "logo": "images/shared/logo.png",
+    "image": "images/our-school/school-building.jpg",
+    "telephone": "+27163496954",
+    "email": "admin@lifeministries.co.za",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "13 Bloekomboom Street",
+      "addressLocality": "Heidelberg",
+      "addressRegion": "Gauteng",
+      "postalCode": "1441",
+      "addressCountry": "ZA"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -26.5048,
+      "longitude": 28.3592
+    },
+    "areaServed": ["Heidelberg", "Gauteng", "Sedibeng"],
+    "sameAs": [
+      "https://www.facebook.com/Life-Ministries-Christian-School-322684634441745",
+      "https://www.facebook.com/LMinistries/"
+    ]
+  }
+  </script>
+
+  <!-- ============================================================
+       DEVELOPER NOTE: BOOTSTRAP CSS (from CDN)
+       Bootstrap is a CSS framework that provides a responsive grid
+       system (container/row/col classes) and pre-built components
+       (navbar, cards, buttons) so the page automatically adapts to
+       phone, tablet and desktop screen widths without custom media
+       queries for most of the layout.
+       NOTE: This is loaded from a CDN, which requires an internet
+       connection. If you need this page to work 100% offline,
+       download bootstrap.min.css and bootstrap.bundle.min.js into
+       a /vendor folder and change these paths to point there.
+       ============================================================ -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons (used for the phone/email/social icons) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+  <!-- Our own custom stylesheet, loaded AFTER Bootstrap so our rules
+       can override Bootstrap's defaults where needed. -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <a class="visually-hidden-focusable skip-link" href="#main-content">Skip to main content</a>
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm py-2" aria-label="Main navigation">
+      <div class="container">
+
+        <!-- Logo / site name. Wrapping the logo in a link back to "/"
+             is standard practice: it doubles as a "home" button. -->
+        <a class="navbar-brand" href="index.html">
+          <img src="images/shared/logo.png" alt="Life Ministries logo" height="60" width="180">
+        </a>
+
+        <!-- Hamburger toggle button, only visible below the "lg" breakpoint.
+             LEARNING NOTE: data-bs-toggle and data-bs-target are called
+             "data attributes" — any attribute you make up starting with
+             data- is valid HTML and does nothing on its own, but
+             JavaScript (in this case, Bootstrap's own bundled JS) can
+             read it to decide what to do. Here, Bootstrap's script sees
+             data-bs-toggle="collapse" and data-bs-target="#mainNavbar"
+             and wires this button up to show/hide the element with
+             id="mainNavbar" below — all without us writing any custom
+             JavaScript ourselves.
+             The aria-* attributes (aria-controls, aria-expanded,
+             aria-label) are ACCESSIBILITY attributes: they don't
+             change how the button LOOKS, only what a screen reader
+             announces to a blind/low-vision visitor using it. -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#mainNavbar" aria-controls="mainNavbar"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Collapsible nav links -->
+        <div class="collapse navbar-collapse" id="mainNavbar">
+          <!-- LEARNING NOTE: expanded from the original 4-item nav to
+               the client's requested 8-item structure. "I'm New" is
+               intentionally placed near the end, right before
+               Contact — that ordering is a common pattern on church
+               sites: it lets a first-time visitor find their way to
+               "what do I do if I've never been here" without it
+               competing for attention with the primary Church/School
+               navigation up front. -->
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
+            <li class="nav-item">
+              <!-- aria-current="page" tells assistive tech + SEO crawlers
+                   this is the current page, matching Home in the top nav -->
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="our-church.html">Our Church</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="our-school.html">Our School</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="ministries.html">Ministries</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="events.html">Events</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="media.html">Media</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="im-new.html">I'm New</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ============================================================
+         DEVELOPER NOTE: HERO PHOTO
+         Same static full-width hero pattern used on the homepage
+         and Our Church page — a real photo of the school buildings.
+         ============================================================ -->
+    <section class="hero-banner" aria-label="Our school buildings">
+      <img src="images/our-school/school-building.jpg" alt="Life Ministries Christian School buildings" class="w-100 hero-banner-img" width="1740" height="1160">
+    </section>
+
+    <!-- ============================================================
+         DEVELOPER NOTE: WHY CHOOSE LIFE MINISTRIES
+         Uses the shared .who-we-are-section background-photo treatment
+         (see the matching note on our-church.html) so every page that
+         needs this kind of "intro statement" section looks consistent
+         site-wide. Copy here is the client's own "Why choose Life
+         Ministries?" text from their brief, used close to verbatim.
+         ============================================================ -->
+    <section class="section-spacing text-center who-we-are-section" aria-label="Why choose Life Ministries Christian School">
+      <div class="container reveal-on-scroll">
+        <p class="text-uppercase fw-bold small mb-2 who-we-are-label" style="letter-spacing: 2px;">Why Choose Life Ministries</p>
+        <div class="accent-underline mx-auto mb-4"></div>
+        <h1 class="who-we-are-heading mb-4">A Christian School in Heidelberg, Gauteng — Educating the Whole Child</h1>
+        <p class="text-muted mx-auto fs-5" style="max-width: 760px;">
+          Life Ministries Christian School is a Christian school in Heidelberg, Gauteng, and we believe that education is about more than academic success — it is about developing the whole child. We provide a nurturing, Christ-centred environment where learners are encouraged to grow in faith, knowledge, character and confidence. Our school strives to create a strong foundation for every learner, equipping them with the values, skills and support they need to reach their full potential and make a positive difference in the world.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         DEVELOPER NOTE: SCHOOL ETHOS + VISION
+         Copied directly from the client's brief document and the
+         live site — this is real, confirmed copy, not placeholder
+         text. Presented as 2 side-by-side cards on a light
+         background so it reads as reference information rather than
+         another big statement section (that role is filled by "Why
+         Choose Life Ministries" above).
+         ============================================================ -->
+    <section class="section-spacing bg-light reveal-on-scroll" aria-label="School ethos and vision">
+      <div class="container">
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+          <div class="col">
+            <div class="card h-100 shadow-sm border-0">
+              <div class="card-body">
+                <h2 class="h5 fw-bold mb-3" style="color: var(--brand-navy);">School Ethos</h2>
+                <p class="text-muted small mb-0">We, at Life Ministries Christian School, believe it is a God given responsibility of the parents and the local body of Christ (as revealed in God's Word, the Bible) to obtain an education for our children which is grounded on the moral values contained in the Bible. Life Ministries Christian School uses the Impaq curriculum and in addition thereto, Scripture memory passages, and references to God and Jesus Christ &mdash; all designed to help students develop moral character, a sense of accountability, and wisdom in their lives.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100 shadow-sm border-0">
+              <div class="card-body">
+                <h2 class="h5 fw-bold mb-3" style="color: var(--brand-navy);">Vision</h2>
+                <p class="text-muted small mb-3">To create a safe and disciplined school environment wherein we can raise young men and women of strong Christian character through Biblical Values, Character building and Academic Excellence.</p>
+                <p class="text-muted small fst-italic mb-0">&ldquo;Train up a child in the way he should go, and when he is old, he will not depart from it.&rdquo; &mdash; Proverbs 22:6</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         DEVELOPER NOTE: SPORT AND ACTIVITIES
+         Real schedule pulled from the live site (days, times, grade
+         ranges) with the client's actual photos. LEARNING NOTE: this
+         reuses the exact same .card + .card-img-top pattern as the
+         homepage's info-card section, so a visitor moving between
+         pages sees a consistent "photo card" style throughout the
+         site rather than a new layout invented per page.
+         ============================================================ -->
+    <section class="section-spacing reveal-on-scroll" aria-label="Sport and activities">
+      <div class="container">
+        <div class="text-center mb-4">
+          <p class="text-uppercase fw-bold small mb-1" style="color: var(--brand-green); letter-spacing: 1px;">Get Active</p>
+          <h2 class="h3" style="color: var(--brand-navy);">Sport &amp; Activities</h2>
+        </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+
+          <div class="col">
+            <div class="card h-100 info-card shadow-sm">
+              <img src="images/our-school/air-rifle-shooting.jpg" class="card-img-top" alt="Pupil aiming an air rifle" width="768" height="547">
+              <div class="card-body text-center">
+                <h3 class="h5 card-title">Air Rifle Shooting</h3>
+                <p class="card-text mb-1">Wednesday 14:00&ndash;15:00</p>
+                <p class="card-text text-muted small">(Team Members Only)</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100 info-card shadow-sm">
+              <img src="images/our-school/cross-country.jpg" class="card-img-top" alt="Pupils running cross country" width="768" height="547">
+              <div class="card-body text-center">
+                <h3 class="h5 card-title">Cross-Country</h3>
+                <p class="card-text mb-1">Mondays &amp; Wednesdays 16:00&ndash;17:00</p>
+                <p class="card-text text-muted small">(Grade 1 &ndash; Grade 7)</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100 info-card shadow-sm">
+              <img src="images/our-school/soccer.jpg" class="card-img-top" alt="Pupils playing soccer" width="768" height="547">
+              <div class="card-body text-center">
+                <h3 class="h5 card-title">Soccer</h3>
+                <p class="card-text mb-1">Tuesday 14:00&ndash;15:00</p>
+                <p class="card-text text-muted small">(Grade 1 &ndash; Grade 7)</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         DEVELOPER NOTE: BANKING / OFFICE HOURS / ADDRESS / ENROLMENT
+         Reuses the homepage's .section-dark card pattern (same as
+         Our Church's Service Times/Offerings/Office Hours section)
+         for visual consistency. Real details pulled from the live
+         site. The Address column is new — showing it directly on
+         this page (not just on Contact) reinforces the "school in
+         Heidelberg" local-search relevance and saves a visitor a
+         click if all they wanted was the address.
+         ============================================================ -->
+    <section class="section-spacing section-dark" aria-label="Banking details, office hours, address and enrolment">
+      <div class="container reveal-on-scroll">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4 text-center">
+
+          <div class="col">
+            <h3 class="h5 mb-3" style="color: var(--brand-green);">Banking Details</h3>
+            <p class="mb-1">Standard Bank</p>
+            <p class="mb-1">Account: 03 09 348 42</p>
+            <p class="mb-1">Branch: 052 843</p>
+            <p class="mb-0">Cheque Account</p>
+          </div>
+
+          <div class="col">
+            <h3 class="h5 mb-3" style="color: var(--brand-green);">School Office Hours</h3>
+            <p class="mb-1">Mondays &ndash; Fridays</p>
+            <p class="fw-bold mb-0">08:00 &ndash; 14:00</p>
+          </div>
+
+          <div class="col">
+            <h3 class="h5 mb-3" style="color: var(--brand-green);">Find Us</h3>
+            <p class="mb-1">13 Bloekomboom Street</p>
+            <p class="mb-0">Heidelberg, Gauteng, 1441</p>
+          </div>
+
+          <div class="col">
+            <h3 class="h5 mb-3" style="color: var(--brand-green);">Enrolment</h3>
+            <p class="mb-3">Interested in enrolling your child? Get in touch with our office &mdash; we'd love to hear from you.</p>
+            <a href="contact.html" class="btn link-card-btn">Contact Us</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         DEVELOPER NOTE: SCHOOL TERMS 2026
+         Real term dates and public holiday closures from the live
+         site. A simple 4-column responsive card grid for the terms,
+         with the holiday list underneath as a short paragraph rather
+         than another set of cards (a long list of one-off dates
+         doesn't need the same visual weight as the 4 main terms).
+         ============================================================ -->
+    <section class="section-spacing bg-light reveal-on-scroll" aria-label="School terms 2026">
+      <div class="container">
+        <div class="text-center mb-4">
+          <p class="text-uppercase fw-bold small mb-1" style="color: var(--brand-green); letter-spacing: 1px;">Calendar</p>
+          <h2 class="h3" style="color: var(--brand-navy);">School Terms 2026</h2>
+        </div>
+        <div class="row row-cols-2 row-cols-lg-4 g-3 mb-4">
+
+          <div class="col">
+            <div class="card h-100 text-center shadow-sm border-0">
+              <div class="card-body">
+                <p class="text-uppercase small fw-bold mb-1" style="color: var(--brand-green);">Term 1</p>
+                <p class="small mb-0">14 Jan &ndash; 27 Mar</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100 text-center shadow-sm border-0">
+              <div class="card-body">
+                <p class="text-uppercase small fw-bold mb-1" style="color: var(--brand-green);">Term 2</p>
+                <p class="small mb-0">8 Apr &ndash; 26 Jun</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100 text-center shadow-sm border-0">
+              <div class="card-body">
+                <p class="text-uppercase small fw-bold mb-1" style="color: var(--brand-green);">Term 3</p>
+                <p class="small mb-0">20 Jul &ndash; 18 Sep</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100 text-center shadow-sm border-0">
+              <div class="card-body">
+                <p class="text-uppercase small fw-bold mb-1" style="color: var(--brand-green);">Term 4</p>
+                <p class="small mb-0">5 Oct &ndash; 4 Dec</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <p class="text-muted small text-center mb-0">
+          Long weekends: closed. The school is also closed on 27 April (Freedom Day), 1 May (Workers Day), 15 June (special school holiday), 16 June (Youth Day), and 10 August (National Women's Day, observed).
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+
+<footer class="footer">
+    <div class="text-center py-4 bg-white">
+      <div class="d-flex justify-content-center gap-3">
+        <a href="https://www.facebook.com/LMinistries/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="footer-social-btn">
+          <i class="bi bi-facebook" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.youtube.com/channel/UC44tvG1QtsGZd-dPXgL7Evg" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="footer-social-btn">
+          <i class="bi bi-youtube" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-bar text-center py-3">
+      <p class="mb-0 small">
+        Designed by <strong>VanillaTech</strong> &nbsp;|&nbsp; Service every Sunday 9:30 &amp; 18:00
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

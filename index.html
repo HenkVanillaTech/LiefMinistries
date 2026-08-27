@@ -1,0 +1,637 @@
+<!--
+=====================================================================
+LEARNING PRIMER — READ THIS FIRST IF YOU'RE NEW TO HTML
+=====================================================================
+This file is real, working code AND a mini HTML lesson. Every
+section below has its own "DEVELOPER NOTE" comment explaining what
+that specific piece does. This primer covers the concepts those
+notes assume you already know, so read it once before diving in.
+
+WHAT IS HTML?
+HTML (HyperText Markup Language) doesn't make a page look pretty —
+that's CSS's job (see style.css). HTML's only job is to describe
+the STRUCTURE and MEANING of content: "this is a heading", "this is
+a paragraph", "this is a button", "this is an image". Browsers read
+that structure and decide how to display it; screen readers (for
+blind/low-vision visitors) read that same structure to describe the
+page out loud; search engines read it to understand what the page
+is about. Getting the structure right (using the correct tag for
+each job) is called "semantic HTML" and it matters for all 3 of
+those audiences.
+
+TAGS, ELEMENTS, AND ATTRIBUTES
+- A TAG is a keyword in angle brackets, like <p> or <img>.
+- Most tags come in an opening/closing PAIR that wraps content:
+  <p>This is a paragraph.</p> — everything between <p> and </p> is
+  the paragraph's content. The pair together (open tag + content +
+  close tag) is called an ELEMENT.
+- Some tags are SELF-CLOSING because they don't wrap anything — an
+  <img> tag just points to an image file, it has no "inside" content,
+  so it never gets a separate </img> closing tag.
+- An ATTRIBUTE is extra information written INSIDE the opening tag,
+  as name="value" pairs: <img src="cat.jpg" alt="A sleeping cat">
+  has two attributes, src (which file to show) and alt (a text
+  description, used by screen readers and shown if the image fails
+  to load). You'll see dozens of different attributes in this file —
+  each DEVELOPER NOTE explains what the ones nearby actually do.
+
+NESTING AND INDENTATION
+HTML elements can contain other elements, forming a tree — a <div>
+containing a <ul> containing several <li> elements, for example.
+Indentation (the spaces at the start of each line) has NO effect on
+how the browser renders the page — it's purely there to make the
+nesting structure easier for a human to read. If a line is indented
+one level deeper than the line above it, that usually means it's
+"inside" that element.
+
+THE <head> vs THE <body>
+Every HTML page has exactly one <head> and one <body>. Nothing in
+<head> is directly visible on the page — it's metadata: the page
+title (shown in the browser tab), links to CSS/font files, SEO
+tags, etc. Everything a visitor actually sees and interacts with —
+text, images, buttons, the whole layout — lives inside <body>.
+
+CLASSES vs IDs
+You'll see two different attributes used to "label" elements so CSS
+and JavaScript can target them:
+- class="..." — can be used on MANY elements at once (e.g. every
+  card on the page might share class="card"), and one element can
+  have several classes separated by spaces (class="btn btn-light").
+  Almost all of Bootstrap's styling works this way — see style.css's
+  primer for more on what each class actually changes.
+- id="..." — must be UNIQUE on the page (only one element is
+  allowed to have any given id). IDs are mainly used as "jump
+  targets" (a link with href="#main-content" scrolls to the element
+  with id="main-content") or as hooks for JavaScript to grab one
+  specific element (see script.js).
+
+COMMENTS
+Anything between an opening "less-than, exclamation mark, two
+hyphens" marker and a closing "two hyphens, greater-than" marker is
+a comment: the browser completely ignores it. Comments exist purely
+to leave notes for humans reading the code later — which is exactly
+what every DEVELOPER NOTE in this file is. (Note: a real HTML
+comment can never safely contain two hyphens in a row anywhere in
+its text, since the browser reads that as an early close-of-comment
+— which is actually the exact bug that briefly broke this very
+primer during editing, so it's a good one to remember!)
+
+WHAT IS BOOTSTRAP, REALLY?
+Bootstrap is not a separate "language" — it's just a big CSS file
+(plus a small JavaScript file) that somebody else already wrote,
+which we're borrowing. It defines hundreds of ready-made CSS classes
+(like container, row, col, btn, navbar) with sensible styling
+already attached, so instead of writing your own CSS from scratch
+for a responsive grid or a working navbar, you just add the right
+combination of Bootstrap class names to your HTML. You'll see these
+classes constantly throughout this file — style.css's primer
+explains the grid system (rows/columns) in more depth.
+=====================================================================
+-->
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+  <!-- ============================================================
+       DEVELOPER NOTE: DOCUMENT HEAD
+       This section holds metadata used by browsers and search
+       engines. Nothing here is visible on the page itself, but it
+       strongly affects SEO (Search Engine Optimization) and how
+       the site looks when shared on social media.
+       ============================================================ -->
+
+  <meta charset="UTF-8">
+
+  <!-- Responsive viewport tag: tells mobile/tablet browsers to render
+       the page at the device's actual width instead of zooming out
+       to fit a "desktop" layout. Required for any mobile-friendly site. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary SEO tags -->
+  <title>Life Ministries — Christian Church &amp; Christian School</title>
+  <meta name="description" content="Life Ministries is a Christian church and Christian school in Heidelberg, Gauteng. Sunday services 09:30 & 18:00. Join us for worship, Bible study, youth group and intercession prayer.">
+  <meta name="keywords" content="Life Ministries, Christian church Heidelberg, Christian school Heidelberg, Sunday service, Bible study, youth group, Life Ministries Christian School, Heidelberg Gauteng church">
+  <meta name="author" content="Life Ministries">
+  <meta name="robots" content="index, follow">
+
+  <!-- Canonical URL: tells search engines the "official" address of this
+       page so duplicate copies (http vs https, trailing slash, etc.)
+       don't split your SEO ranking. UPDATE this to your real domain. -->
+  <link rel="canonical" href="https://lifeministries.co.za/">
+
+  <!-- Open Graph tags: control how the page looks when someone shares
+       the link on Facebook, WhatsApp, LinkedIn, etc. -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Life Ministries — Christian Church & Christian School">
+  <meta property="og:description" content="A Christian church and Christian school in Heidelberg, Gauteng. Sunday services 09:30 & 18:00.">
+  <meta property="og:url" content="https://lifeministries.co.za/">
+  <meta property="og:site_name" content="Life Ministries">
+  <meta property="og:locale" content="en_ZA">
+  <meta property="og:image" content="images/index/hero-banner.jpg">
+
+  <!-- Twitter Card tags: same idea as Open Graph, but for Twitter/X -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Life Ministries — Christian Church & Christian School">
+  <meta name="twitter:description" content="A Christian church and Christian school in Heidelberg, Gauteng. Sunday services 09:30 & 18:00.">
+
+  <!-- Favicon (browser tab icon). Replace with your own icon file. -->
+  <link rel="icon" type="image/png" href="images/shared/logo.png">
+
+  <!-- ============================================================
+       DEVELOPER NOTE: STRUCTURED DATA (JSON-LD)
+       This block is invisible to visitors but read by search engines
+       (Google, Bing) to understand "this is a Church" and can enable
+       rich results (e.g. showing service times directly in search).
+       Schema type used: "Church" (a subtype of "Organization").
+       ============================================================ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Church",
+    "name": "Life Ministries",
+    "url": "https://lifeministries.co.za/",
+    "logo": "images/shared/logo.png",
+    "image": "images/index/hero-banner.jpg",
+    "telephone": "+27163496954",
+    "email": "admin@lifeministries.co.za",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Heidelberg",
+      "addressRegion": "Gauteng",
+      "addressCountry": "ZA"
+    },
+    "sameAs": [
+      "https://www.facebook.com/LMinistries/",
+      "https://www.youtube.com/channel/UC44tvG1QtsGZd-dPXgL7Evg"
+    ]
+  }
+  </script>
+
+  <!-- ============================================================
+       DEVELOPER NOTE: BOOTSTRAP CSS (from CDN)
+       Bootstrap is a CSS framework that provides a responsive grid
+       system (container/row/col classes) and pre-built components
+       (navbar, cards, buttons) so the page automatically adapts to
+       phone, tablet and desktop screen widths without custom media
+       queries for most of the layout.
+       NOTE: This is loaded from a CDN, which requires an internet
+       connection. If you need this page to work 100% offline,
+       download bootstrap.min.css and bootstrap.bundle.min.js into
+       a /vendor folder and change these paths to point there.
+       ============================================================ -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons (used for the phone/email/social icons) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+  <!-- Our own custom stylesheet, loaded AFTER Bootstrap so our rules
+       can override Bootstrap's defaults where needed. -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       DEVELOPER NOTE: SKIP LINK (Accessibility)
+       Lets keyboard/screen-reader users jump straight to the main
+       content instead of tabbing through the whole navbar every
+       time. It's visually hidden until it receives keyboard focus.
+       ============================================================ -->
+  <a class="visually-hidden-focusable skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- ============================================================
+       DEVELOPER NOTE: HEADER / NAVIGATION BAR
+       Uses Bootstrap's "navbar" component. "navbar-expand-lg" means
+       the menu is a hamburger icon on phones/tablets and expands to
+       a full horizontal menu on large screens (lg = 992px and up).
+       "sticky-top" keeps the header visible while the visitor scrolls.
+       ============================================================ -->
+  <!-- ============================================================
+       DEVELOPER NOTE: NAVBAR
+       Reverted from an earlier "transparent over hero, solidifies
+       on scroll" experiment back to a normal always-solid navbar —
+       client feedback was that the nav should be visible with its
+       white background from the very start, not just after
+       scrolling. Same classes as every other page's nav now.
+       ============================================================ -->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm py-2" aria-label="Main navigation">
+      <div class="container">
+
+        <!-- Logo / site name. Wrapping the logo in a link back to "/"
+             is standard practice: it doubles as a "home" button. -->
+        <a class="navbar-brand" href="index.html">
+          <img src="images/shared/logo.png" alt="Life Ministries logo" height="60" width="180">
+        </a>
+
+        <!-- Hamburger toggle button, only visible below the "lg" breakpoint.
+             LEARNING NOTE: data-bs-toggle and data-bs-target are called
+             "data attributes" — any attribute you make up starting with
+             data- is valid HTML and does nothing on its own, but
+             JavaScript (in this case, Bootstrap's own bundled JS) can
+             read it to decide what to do. Here, Bootstrap's script sees
+             data-bs-toggle="collapse" and data-bs-target="#mainNavbar"
+             and wires this button up to show/hide the element with
+             id="mainNavbar" below — all without us writing any custom
+             JavaScript ourselves.
+             The aria-* attributes (aria-controls, aria-expanded,
+             aria-label) are ACCESSIBILITY attributes: they don't
+             change how the button LOOKS, only what a screen reader
+             announces to a blind/low-vision visitor using it. -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#mainNavbar" aria-controls="mainNavbar"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Collapsible nav links -->
+        <div class="collapse navbar-collapse" id="mainNavbar">
+          <!-- LEARNING NOTE: expanded from the original 4-item nav to
+               the client's requested 8-item structure. "I'm New" is
+               intentionally placed near the end, right before
+               Contact — that ordering is a common pattern on church
+               sites: it lets a first-time visitor find their way to
+               "what do I do if I've never been here" without it
+               competing for attention with the primary Church/School
+               navigation up front. -->
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
+            <li class="nav-item">
+              <!-- aria-current="page" tells assistive tech + SEO crawlers
+                   this is the current page, matching Home in the top nav -->
+              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="our-church.html">Our Church</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="our-school.html">Our School</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="ministries.html">Ministries</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="events.html">Events</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="media.html">Media</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="im-new.html">I'm New</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- "main" landmark: the primary content of the page, used by
+       screen readers to skip navigation/footer chrome. Only one
+       <main> should exist per page. -->
+  <main id="main-content">
+
+    <!-- ============================================================
+         DEVELOPER NOTE: WIDTH/HEIGHT ATTRIBUTES ON IMAGES
+         Every <img> below now carries its real pixel width/height
+         as HTML attributes (not just CSS). This lets the browser
+         reserve the correct amount of space for each image BEFORE
+         it finishes downloading, so the rest of the page doesn't
+         visibly jump around as images load in — this is the
+         "Cumulative Layout Shift" (CLS) metric, one of Google's
+         Core Web Vitals and a real ranking/SEO factor.
+         The actual DISPLAYED size is still fully controlled by the
+         CSS classes (object-fit, height, etc.) — these attributes
+         only set the image's aspect ratio hint, they don't force it
+         to render at 1740x1160 on the page.
+         ============================================================ -->
+    <!-- ============================================================
+         DEVELOPER NOTE: STATIC HERO BANNER
+         This is a single, non-rotating full-width photo — confirmed
+         from the live site screenshots. (Earlier drafts wrongly
+         turned this into a carousel; the ACTUAL carousel is further
+         down the page, see the "PHOTO CAROUSEL" section below.)
+         ============================================================ -->
+    <section class="hero-banner" aria-label="Welcome banner">
+      <img src="images/index/hero-banner.jpg" alt="Life Ministries welcome banner" class="w-100 hero-banner-img" width="1740" height="1160">
+    </section>
+
+    <!-- ============================================================
+         DEVELOPER NOTE: SOCIAL LINKS BAR
+         A plain white strip with an uppercase label and 3 round,
+         brand-coloured icon buttons (Facebook blue / YouTube red /
+         Facebook blue), each with a small caption underneath
+         ("Our Church" / "Our Church" / "Our School") — matches the
+         site's own labelling exactly, even though the first two
+         both point to the church's channels.
+         ============================================================ -->
+    <section class="section-spacing bg-white text-center reveal-on-scroll" aria-label="Social media links">
+      <p class="text-uppercase small fw-bold text-muted mb-3">Links to our social media accounts</p>
+      <div class="d-flex justify-content-center gap-4 gap-md-5 flex-wrap">
+        <a href="https://www.facebook.com/LMinistries/" target="_blank" rel="noopener noreferrer" class="social-btn-link">
+          <span class="social-btn social-btn-fb"><i class="bi bi-facebook" aria-hidden="true"></i></span>
+          <span class="social-btn-label">Our Church</span>
+        </a>
+        <a href="https://www.youtube.com/channel/UC44tvG1QtsGZd-dPXgL7Evg" target="_blank" rel="noopener noreferrer" class="social-btn-link">
+          <span class="social-btn social-btn-yt"><i class="bi bi-youtube" aria-hidden="true"></i></span>
+          <span class="social-btn-label">Our Church</span>
+        </a>
+        <a href="https://www.facebook.com/Life-Ministries-Christian-School-322684634441745" target="_blank" rel="noopener noreferrer" class="social-btn-link">
+          <span class="social-btn social-btn-fb"><i class="bi bi-facebook" aria-hidden="true"></i></span>
+          <span class="social-btn-label">Our School</span>
+        </a>
+        <!-- LEARNING NOTE: placeholder Instagram link — the client
+             hasn't supplied their real Instagram handle/URL yet.
+             href="#" is a safe, harmless placeholder (it just jumps
+             to the top of the current page instead of navigating
+             anywhere) rather than leaving href empty or pointing
+             somewhere made up. Swap in the real profile URL — e.g.
+             https://www.instagram.com/lifeministries — once the
+             client provides it. -->
+        <a href="#" target="_blank" rel="noopener noreferrer" class="social-btn-link">
+          <span class="social-btn social-btn-ig"><i class="bi bi-instagram" aria-hidden="true"></i></span>
+          <span class="social-btn-label">Instagram</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         DEVELOPER NOTE: WHO WE ARE + VISION SECTION
+         New section added per the client's homepage brief: a clear
+         statement of who Life Ministries is, plus a short vision/
+         mission line. The full 5-pillar vision (Know Christ / Build
+         Character / Discover Purpose / Strengthen Families / Impact
+         the Community) lives on the Our Church page — this is
+         intentionally the SHORT version for the homepage, since a
+         homepage should give visitors the headline, not the full
+         essay.
+         REDESIGNED per feedback that the original plain-white
+         version blended into the page and was easy to scroll past.
+         Changes: its own tinted background band (so it visually
+         separates from the white sections above/below), a short
+         accent underline beneath the "WHO WE ARE" label, a much
+         larger/bolder headline, more vertical padding, and a
+         scroll-reveal fade/slide-in animation (see .reveal-on-scroll
+         in style.css and the IntersectionObserver in script.js) so
+         it visually "arrives" as the visitor scrolls to it instead
+         of just sitting there as static text.
+         ============================================================ -->
+    <section class="section-spacing text-center who-we-are-section" aria-label="Who we are">
+      <div class="container reveal-on-scroll">
+        <p class="text-uppercase fw-bold small mb-2 who-we-are-label" style="letter-spacing: 2px;">Who We Are</p>
+        <div class="accent-underline mx-auto mb-4"></div>
+        <h1 class="who-we-are-heading mb-4">Know Christ. Build Character.<br class="d-none d-md-block"> Discover Purpose. Impact the World.</h1>
+        <p class="text-muted mx-auto mb-3 fs-5" style="max-width: 680px;">
+          Life Ministries is a Christian church and Christian school in Heidelberg, Gauteng, building Christ-centred lives, families and communities for a life of purpose.
+        </p>
+        <p class="fw-semibold fs-5" style="color: var(--brand-navy);">Church &bull; School &bull; Youth &bull; Families &bull; Community</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         DEVELOPER NOTE: PHOTO CAROUSEL (the real one!)
+         This is the site's actual rotating carousel — a large, dark,
+         full-bleed photo carousel using the 4 numbered images, each
+         darkened slightly so the caption box reads clearly. The
+         caption sits on the right side, vertically centered: a dark
+         navy "pill" title followed by a lighter details box.
+         Bootstrap's carousel JS (loaded at the bottom of the page)
+         drives the auto-rotation, dot navigation, swipe gestures on
+         touch devices, and the prev/next arrow controls.
+         ============================================================ -->
+    <section class="info-carousel" aria-label="Church activities and contact details">
+      <!-- LEARNING NOTE: this carousel intentionally does NOT have a
+           data-bs-ride="carousel" attribute. That attribute would
+           make Bootstrap start its OWN automatic rotation timer,
+           running at the same time as the one we set up ourselves in
+           script.js — two separate timers both trying to advance the
+           same carousel causes exactly the kind of erratic,
+           inconsistent timing (long pause, then fast, then normal)
+           that a real visitor would notice as "broken". Leaving this
+           attribute off means script.js is the ONLY thing driving
+           the rotation, so its 4.2 second interval stays consistent. -->
+      <div id="infoCarousel" class="carousel slide carousel-fade" data-bs-interval="4200">
+
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#infoCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1: Sunday church services"></button>
+          <button type="button" data-bs-target="#infoCarousel" data-bs-slide-to="1" aria-label="Slide 2: Intercession prayer group"></button>
+          <button type="button" data-bs-target="#infoCarousel" data-bs-slide-to="2" aria-label="Slide 3: Life Youth"></button>
+          <button type="button" data-bs-target="#infoCarousel" data-bs-slide-to="3" aria-label="Slide 4: General enquiries"></button>
+        </div>
+
+        <div class="carousel-inner">
+
+          <!-- ==========================================================
+               DEVELOPER NOTE: <picture> — SERVING DIFFERENT IMAGE
+               FILES PER SCREEN SIZE
+               A plain <img> can only ever load ONE file. <picture>
+               lets the browser choose between several, based on
+               conditions you set — here, screen width. It works like
+               this:
+                 <picture>
+                   <source media="(min-width: 992px)" srcset="wide.jpg">
+                   <img src="fallback.jpg" ...>
+                 </picture>
+               The browser checks each <source> in order and uses the
+               FIRST one whose "media" condition matches the current
+               screen. If NONE match, it falls back to the plain <img>
+               at the bottom — which is also what's used if the
+               browser doesn't support <picture> at all (very old
+               browsers), so it's a safe, backwards-compatible pattern.
+               All the usual attributes — class, alt, width, height —
+               stay on the <img> itself, not on <picture> or <source>.
+               ========================================================== -->
+
+          <!-- Slide 1: Sunday Church Services -->
+          <div class="carousel-item active">
+            <picture>
+              <source media="(min-width: 992px)" srcset="images/index/church-services-desktop.jpg">
+              <img src="images/index/church-services.jpg" class="d-block w-100 info-carousel-img" alt="Wooden cross against a blue sky" width="1600" height="1066">
+            </picture>
+            <div class="info-carousel-caption">
+              <p class="caption-title">Sunday Church Services</p>
+              <div class="caption-box">
+                <p class="mb-0">Morning 09:30</p>
+                <p class="mb-0">Evening 18:00</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2: Intercession Prayer Group -->
+          <div class="carousel-item">
+            <picture>
+              <source media="(min-width: 992px)" srcset="images/index/friday-prayer-desktop.jpg">
+              <img src="images/index/friday-prayer.jpg" class="d-block w-100 info-carousel-img" alt="Hands held together in prayer" width="1600" height="1066">
+            </picture>
+            <div class="info-carousel-caption">
+              <p class="caption-title">Intercession Prayer Group</p>
+              <div class="caption-box">
+                <p class="mb-0">Friday 05:15</p>
+                <p class="mb-0">RSVP — Juan 064 879 5868</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 3: Life Youth -->
+          <div class="carousel-item">
+            <picture>
+              <source media="(min-width: 992px)" srcset="images/index/youth-group-desktop.jpg">
+              <img src="images/index/youth-group.webp" class="d-block w-100 info-carousel-img" alt="Group of young people smiling together" width="1740" height="1160">
+            </picture>
+            <div class="info-carousel-caption">
+              <p class="caption-title">Life Youth</p>
+              <div class="caption-box">
+                <p class="mb-1">SUNDAY 17:00</p>
+                <p class="mb-1">Tiaan 082 893 6327</p>
+                <p class="mb-2">Susan 072 455 8399</p>
+                <span class="badge-age">Ages 13 to 18</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 4: General Enquiries
+               No desktop-specific crop has been supplied for this one
+               yet, so it stays a plain <img> using the same file on
+               every screen size. Swap this for a <picture> block
+               (matching the pattern above) once a desktop version of
+               general-enquiries.jpg exists. -->
+          <div class="carousel-item">
+            <img src="images/index/general-enquiries.jpg" class="d-block w-100 info-carousel-img" alt="Phone and notebook on a desk" width="1600" height="1066">
+            <div class="info-carousel-caption">
+              <p class="caption-title">General Enquiries</p>
+              <div class="caption-box">
+                <p class="mb-2">You can reach our office from 08:00 to 14:00 (Mon–Fri)</p>
+                <p class="mb-1"><a href="tel:0163496954">016 349 6954</a></p>
+                <p class="mb-0"><a href="mailto:admin@lifeministries.co.za">admin@lifeministries.co.za</a></p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#infoCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous slide</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#infoCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next slide</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         DEVELOPER NOTE: EVENTS / NEWS QUICK LINKS
+         Originally built as two full preview sections (event cards
+         and news cards duplicated on the homepage). Client feedback:
+         Events and News content should live on their own dedicated
+         tabs (events.html / media.html) rather than being previewed
+         in full on the homepage — so this is now a simple button
+         row instead. Keeps the homepage focused on the "who we are"
+         intro and welcoming photography the client asked for,
+         without duplicating content that already has its own page.
+         ============================================================ -->
+    <section class="section-spacing bg-light text-center reveal-on-scroll" aria-label="Quick links to events and news">
+      <div class="container">
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+          <a href="events.html" class="btn link-card-btn">Upcoming Events</a>
+          <a href="media.html" class="btn link-card-btn">Latest News &amp; Media</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         DEVELOPER NOTE: "OUR CHURCH" / "OUR SCHOOL" LINK SECTION
+         Two large clickable photos side by side on a dark navy
+         background, each with a small olive-green pill button
+         underneath acting as the call-to-action label. The whole
+         image is wrapped in the link (not just the button) so the
+         entire photo is one large, easy-to-tap link target on mobile.
+         ============================================================ -->
+    <section class="section-spacing section-dark" aria-label="Explore our church and school">
+      <div class="container reveal-on-scroll">
+        <div class="row row-cols-1 row-cols-md-2 g-5 justify-content-center text-center">
+
+          <div class="col">
+            <a href="our-church.html" class="text-decoration-none link-card d-block">
+              <img src="images/index/link-our-church.jpg" class="img-fluid link-card-img" alt="Person worshipping at sunrise" width="768" height="547">
+              <span class="btn link-card-btn mt-3">Our Church</span>
+            </a>
+          </div>
+
+          <div class="col">
+            <a href="our-school.html" class="text-decoration-none link-card d-block">
+              <img src="images/index/link-our-school.jpg" class="img-fluid link-card-img" alt="School child wearing safety glasses" width="768" height="547">
+              <span class="btn link-card-btn mt-3">Our School</span>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- ==========================================================
+             DEVELOPER NOTE: SCRIPTURE / VERSE SECTION
+             Sits in the same dark section as the two link cards above
+             (confirmed from screenshots: both share one continuous
+             navy background). The quote itself lives in a rounded,
+             light-grey "pill" card, matching the original design.
+             ========================================================== -->
+        <div class="text-center mt-5">
+          <div class="verse-pill mx-auto">
+            <p class="text-uppercase small fw-bold mb-3">Jeremiah 29:11</p>
+            <blockquote class="blockquote mb-0">
+              <p>&ldquo;For I know the plans I have for you,&rdquo; declares the Lord, &ldquo;plans to prosper you and not to harm you, plans to give you hope and a future.&rdquo;</p>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+
+      <!-- Diagonal cut along the bottom edge of the dark section,
+           creating the slanted transition into the white footer
+           below — achieved with clip-path (no image required). -->
+      <div class="section-dark-cut" aria-hidden="true"></div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       DEVELOPER NOTE: FOOTER
+       A light section with 2 round dark social icon buttons,
+       followed by a dark bottom bar with the credit line and
+       service-times reminder. (An earlier draft included a
+       decorative leafy image strip along the top edge here — it's
+       been removed since we didn't have the real photo for it and
+       a plain placeholder colour looked like a stray grey bar. If
+       you'd like that decorative strip back, upload a leafy/nature
+       photo and it can be added as a background-image on a new
+       div right above the social icons.)
+       ============================================================ -->
+  <footer class="footer">
+    <div class="text-center py-4 bg-white">
+      <div class="d-flex justify-content-center gap-3">
+        <a href="https://www.facebook.com/LMinistries/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="footer-social-btn">
+          <i class="bi bi-facebook" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.youtube.com/channel/UC44tvG1QtsGZd-dPXgL7Evg" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="footer-social-btn">
+          <i class="bi bi-youtube" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-bar text-center py-3">
+      <p class="mb-0 small">
+        Designed by <strong>VanillaTech</strong> &nbsp;|&nbsp; Service every Sunday 9:30 &amp; 18:00
+      </p>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       DEVELOPER NOTE: SCRIPTS
+       Bootstrap's JS bundle (includes Popper) powers the mobile
+       hamburger menu toggle. Loaded at the very end of <body> so
+       it doesn't block the page from rendering/painting first —
+       this improves perceived load speed, which also helps SEO
+       (Core Web Vitals). Our own script.js is loaded after it.
+       ============================================================ -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

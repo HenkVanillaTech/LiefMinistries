@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+  <!-- ============================================================
+       DEVELOPER NOTE: DOCUMENT HEAD
+       This section holds metadata used by browsers and search
+       engines. Nothing here is visible on the page itself, but it
+       strongly affects SEO (Search Engine Optimization) and how
+       the site looks when shared on social media.
+       ============================================================ -->
+
+  <meta charset="UTF-8">
+
+  <!-- Responsive viewport tag: tells mobile/tablet browsers to render
+       the page at the device's actual width instead of zooming out
+       to fit a "desktop" layout. Required for any mobile-friendly site. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary SEO tags -->
+  <title>Our Church — Life Ministries</title>
+  <meta name="description" content="Life Ministries Christian Church — Sunday services 09:30 & 18:00. Watch the latest sermon, find our service times, banking details and office hours.">
+  <meta name="keywords" content="Life Ministries, Christian church Heidelberg, Christian school Heidelberg, Sunday service, Bible study, youth group, Life Ministries Christian School, Heidelberg Gauteng church">
+  <meta name="author" content="Life Ministries">
+  <meta name="robots" content="index, follow">
+
+  <!-- Canonical URL: tells search engines the "official" address of this
+       page so duplicate copies (http vs https, trailing slash, etc.)
+       don't split your SEO ranking. UPDATE this to your real domain. -->
+  <link rel="canonical" href="https://lifeministries.co.za/our-church.html">
+
+  <!-- Open Graph tags: control how the page looks when someone shares
+       the link on Facebook, WhatsApp, LinkedIn, etc. -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Our Church — Life Ministries">
+  <meta property="og:description" content="Life Ministries Christian Church — Sunday services 09:30 & 18:00. Watch the latest sermon, find our service times, banking details and office hours.">
+  <meta property="og:url" content="https://lifeministries.co.za/our-church.html">
+  <meta property="og:site_name" content="Life Ministries">
+  <meta property="og:locale" content="en_ZA">
+  <meta property="og:image" content="images/our-church/church-building.jpg">
+
+  <!-- Twitter Card tags: same idea as Open Graph, but for Twitter/X -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Our Church — Life Ministries">
+  <meta name="twitter:description" content="Life Ministries Christian Church — Sunday services 09:30 & 18:00. Watch the latest sermon, find our service times, banking details and office hours.">
+
+  <!-- Favicon (browser tab icon). Replace with your own icon file. -->
+  <link rel="icon" type="image/png" href="images/shared/logo.png">
+
+  <!-- ============================================================
+       DEVELOPER NOTE: STRUCTURED DATA (JSON-LD)
+       This block is invisible to visitors but read by search engines
+       (Google, Bing) to understand "this is a Church" and can enable
+       rich results (e.g. showing service times directly in search).
+       Schema type used: "Church" (a subtype of "Organization").
+       ============================================================ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Church",
+    "name": "Life Ministries",
+    "url": "https://lifeministries.co.za/",
+    "logo": "images/shared/logo.png",
+    "image": "images/our-church/church-building.jpg",
+    "telephone": "+27163496954",
+    "email": "admin@lifeministries.co.za",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Heidelberg",
+      "addressRegion": "Gauteng",
+      "addressCountry": "ZA"
+    },
+    "sameAs": [
+      "https://www.facebook.com/LMinistries/",
+      "https://www.youtube.com/channel/UC44tvG1QtsGZd-dPXgL7Evg"
+    ]
+  }
+  </script>
+
+  <!-- ============================================================
+       DEVELOPER NOTE: BOOTSTRAP CSS (from CDN)
+       Bootstrap is a CSS framework that provides a responsive grid
+       system (container/row/col classes) and pre-built components
+       (navbar, cards, buttons) so the page automatically adapts to
+       phone, tablet and desktop screen widths without custom media
+       queries for most of the layout.
+       NOTE: This is loaded from a CDN, which requires an internet
+       connection. If you need this page to work 100% offline,
+       download bootstrap.min.css and bootstrap.bundle.min.js into
+       a /vendor folder and change these paths to point there.
+       ============================================================ -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons (used for the phone/email/social icons) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+  <!-- Our own custom stylesheet, loaded AFTER Bootstrap so our rules
+       can override Bootstrap's defaults where needed. -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <a class="visually-hidden-focusable skip-link" href="#main-content">Skip to main content</a>
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm py-2" aria-label="Main navigation">
+      <div class="container">
+
+        <!-- Logo / site name. Wrapping the logo in a link back to "/"
+             is standard practice: it doubles as a "home" button. -->
+        <a class="navbar-brand" href="index.html">
+          <img src="images/shared/logo.png" alt="Life Ministries logo" height="60" width="180">
+        </a>
+
+        <!-- Hamburger toggle button, only visible below the "lg" breakpoint.
+             LEARNING NOTE: data-bs-toggle and data-bs-target are called
+             "data attributes" — any attribute you make up starting with
+             data- is valid HTML and does nothing on its own, but
+             JavaScript (in this case, Bootstrap's own bundled JS) can
+             read it to decide what to do. Here, Bootstrap's script sees
+             data-bs-toggle="collapse" and data-bs-target="#mainNavbar"
+             and wires this button up to show/hide the element with
+             id="mainNavbar" below — all without us writing any custom
+             JavaScript ourselves.
+             The aria-* attributes (aria-controls, aria-expanded,
+             aria-label) are ACCESSIBILITY attributes: they don't
+             change how the button LOOKS, only what a screen reader
+             announces to a blind/low-vision visitor using it. -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#mainNavbar" aria-controls="mainNavbar"
+                aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Collapsible nav links -->
+        <div class="collapse navbar-collapse" id="mainNavbar">
+          <!-- LEARNING NOTE: expanded from the original 4-item nav to
+               the client's requested 8-item structure. "I'm New" is
+               intentionally placed near the end, right before
+               Contact — that ordering is a common pattern on church
+               sites: it lets a first-time visitor find their way to
+               "what do I do if I've never been here" without it
+               competing for attention with the primary Church/School
+               navigation up front. -->
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
+            <li class="nav-item">
+              <!-- aria-current="page" tells assistive tech + SEO crawlers
+                   this is the current page, matching Home in the top nav -->
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="our-church.html">Our Church</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="our-school.html">Our School</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="ministries.html">Ministries</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="events.html">Events</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="media.html">Media</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="im-new.html">I'm New</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ============================================================
+         DEVELOPER NOTE: HERO PHOTO
+         Same pattern as the homepage's static hero — a single,
+         full-width photo, not a carousel. This uses the client's
+         real photo of the church building (images/our-church/).
+         ============================================================ -->
+    <section class="hero-banner" aria-label="Our church building">
+      <img src="images/our-church/church-building.jpg" alt="Life Ministries church building with stone pillars and a bell" class="w-100 hero-banner-img" width="1740" height="1160">
+    </section>
+
+    <!-- ============================================================
+         DEVELOPER NOTE: WHO WE ARE + CHURCH VISION
+         Reuses the exact same background photo + gradient overlay as
+         the homepage's "Who We Are" section — same CSS class
+         (.who-we-are-section in style.css), same image
+         (images/index/who-we-are-bg.jpg), same gradient darkness.
+         This is intentional: any future page that also needs a
+         "Who We Are"-style intro section should reuse this exact
+         class rather than inventing a new one-off gradient, so the
+         whole site stays visually consistent. If the gradient
+         darkness is ever adjusted, change it ONCE in style.css and
+         every page using this class updates together.
+         Per the client's brief, this page gets the FULL 5-pillar
+         vision (Know Christ / Build Character / Discover Purpose /
+         Strengthen Families / Impact the Community) — the homepage
+         intentionally only shows the short headline version, this
+         page is where visitors read the whole thing.
+         ============================================================ -->
+    <section class="section-spacing text-center who-we-are-section" aria-label="Who we are and our vision">
+      <div class="container reveal-on-scroll">
+        <p class="text-uppercase fw-bold small mb-2 who-we-are-label" style="letter-spacing: 2px;">Who We Are</p>
+        <div class="accent-underline mx-auto mb-4"></div>
+        <h1 class="who-we-are-heading mb-4">Building Christ-Centred Lives, Families and Communities for a Life of Purpose</h1>
+        <p class="text-muted mx-auto mb-3 fs-5" style="max-width: 720px;">
+          Life Ministries is a Christian church in Heidelberg, Gauteng. We are part of one Life Ministries family that includes our church and our Christian school, united under a single vision — to help people know Christ, build character, discover purpose, and impact the world around them.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         DEVELOPER NOTE: 5 VISION PILLARS
+         A simple 5-card responsive grid — row-cols-1 on phones,
+         row-cols-2 on small tablets, row-cols-5 on large desktop
+         screens, so all 5 fit neatly in one row only once there's
+         enough width for them.
+         ============================================================ -->
+    <section class="section-spacing bg-light reveal-on-scroll" aria-label="Our vision pillars">
+      <div class="container">
+        <div class="text-center mb-4">
+          <p class="text-uppercase fw-bold small mb-1" style="color: var(--brand-green); letter-spacing: 1px;">Our Vision</p>
+          <h2 class="h3" style="color: var(--brand-navy);">Five Things We're Building Toward</h2>
+        </div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-5 g-4">
+
+          <div class="col">
+            <div class="card h-100 shadow-sm border-0 text-center">
+              <div class="card-body">
+                <h3 class="h6 card-title fw-bold" style="color: var(--brand-navy);">Know Christ</h3>
+                <p class="card-text text-muted small mb-0">Helping people develop a genuine relationship with Jesus through Biblical teaching, discipleship, prayer and worship.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100 shadow-sm border-0 text-center">
+              <div class="card-body">
+                <h3 class="h6 card-title fw-bold" style="color: var(--brand-navy);">Build Character</h3>
+                <p class="card-text text-muted small mb-0">Developing integrity, discipline, responsibility and compassion — equipping people to live out their faith daily.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100 shadow-sm border-0 text-center">
+              <div class="card-body">
+                <h3 class="h6 card-title fw-bold" style="color: var(--brand-navy);">Discover Purpose</h3>
+                <p class="card-text text-muted small mb-0">Helping every person discover their God-given gifts and purpose, and encouraging leadership and growth.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100 shadow-sm border-0 text-center">
+              <div class="card-body">
+                <h3 class="h6 card-title fw-bold" style="color: var(--brand-navy);">Strengthen Families</h3>
+                <p class="card-text text-muted small mb-0">Supporting families spiritually and practically, and building a healthy church and school community.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100 shadow-sm border-0 text-center">
+              <div class="card-body">
+                <h3 class="h6 card-title fw-bold" style="color: var(--brand-navy);">Impact the Community</h3>
+                <p class="card-text text-muted small mb-0">Serving people beyond the church through outreach, practical acts of service, and being a positive local influence.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         DEVELOPER NOTE: LATEST SERMON — GENUINELY AUTO-UPDATING
+         Two earlier attempts at "always show the newest video with
+         zero manual work" didn't pan out (a playlist-based trick
+         that kept erroring, then a plain single fixed video ID that
+         worked but had to be updated by hand each time). This is the
+         real, reliable fix: the YouTube Data API.
+         HOW IT WORKS: js/script.js section 6 makes a small request to
+         YouTube's official API asking "what's this channel's most
+         recent video?", gets back that video's ID, and sets this
+         iframe's src to it automatically — every time this page
+         loads. No manual updates needed, ever, once set up.
+         FULL STEP-BY-STEP SETUP GUIDE: see the big comment block at
+         the top of js/script.js, right above where YOUTUBE_API_KEY is
+         defined — it walks through getting a free, domain-restricted
+         API key from Google Cloud Console from scratch, with
+         screenshotable menu paths for each click. That's the one
+         authoritative copy of these instructions; both this page and
+         media.html's matching sermon section point here rather than
+         each repeating the same steps.
+         FALLBACK: until a key is set up (or if the API call ever
+         fails — wrong key, quota exceeded, no internet), the iframe
+         below falls back to the last confirmed-working real video,
+         so this section never shows a broken/empty embed either way.
+         ============================================================ -->
+    <section class="section-spacing reveal-on-scroll" aria-label="Latest sermon">
+      <div class="container">
+        <div class="text-center mb-4">
+          <p class="text-uppercase fw-bold small mb-1" style="color: var(--brand-green); letter-spacing: 1px;">Watch</p>
+          <h2 class="h3" style="color: var(--brand-navy);">Latest Sermon</h2>
+        </div>
+        <!-- LEARNING NOTE: the ratio-16x9 Bootstrap class + the inner
+             iframe with 100% width/height is the standard technique
+             for making an embedded video resize responsively instead
+             of having a fixed pixel width/height that overflows on
+             small screens. The id="sermonFrame" is how js/script.js
+             finds this specific iframe to update its src. -->
+        <div class="ratio ratio-16x9 mx-auto shadow" style="max-width: 900px;">
+          <iframe id="sermonFrame" src="https://www.youtube-nocookie.com/embed/YFl4vyFzpAQ"
+                  title="Latest sermon from Life Ministries"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                  loading="lazy"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         DEVELOPER NOTE: MINISTRIES
+         Per the client's brief: prayer, youth, children's, and
+         Bible studies/small groups. Reuses the same .card pattern
+         as the vision pillars above for visual consistency.
+         ============================================================ -->
+    <section class="section-spacing bg-light reveal-on-scroll" aria-label="Our ministries">
+      <div class="container">
+        <div class="text-center mb-4">
+          <p class="text-uppercase fw-bold small mb-1" style="color: var(--brand-green); letter-spacing: 1px;">Get Involved</p>
+          <h2 class="h3" style="color: var(--brand-navy);">Our Ministries</h2>
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+
+          <div class="col">
+            <div class="card h-100 shadow-sm border-0">
+              <div class="card-body text-center">
+                <h3 class="h6 card-title fw-bold" style="color: var(--brand-navy);">Intercession Prayer</h3>
+                <p class="card-text text-muted small">Friday mornings at 05:15. Contact Juan on 064 879 5868 to RSVP.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100 shadow-sm border-0">
+              <div class="card-body text-center">
+                <h3 class="h6 card-title fw-bold" style="color: var(--brand-navy);">Life Youth</h3>
+                <p class="card-text text-muted small">Sundays at 17:00, ages 13&ndash;18. Contact Tiaan or Susan for more info.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100 shadow-sm border-0">
+              <div class="card-body text-center">
+                <h3 class="h6 card-title fw-bold" style="color: var(--brand-navy);">Children's Ministry</h3>
+                <p class="card-text text-muted small">A safe, fun space for children to learn about God's Word during Sunday services.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card h-100 shadow-sm border-0">
+              <div class="card-body text-center">
+                <h3 class="h6 card-title fw-bold" style="color: var(--brand-navy);">Bible Studies</h3>
+                <p class="card-text text-muted small">Small groups meeting throughout the week to study Scripture and grow together.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         DEVELOPER NOTE: SERVICE TIMES / OFFERINGS / OFFICE HOURS
+         Pulled directly from the live site's existing content (the
+         only part of this page that already had real, confirmed
+         details) — banking info, service times, and office hours.
+         Presented as 3 cards on a dark navy background, matching the
+         homepage's .section-dark treatment.
+         ============================================================ -->
+    <section class="section-spacing section-dark" aria-label="Service times, offerings and office hours">
+      <div class="container reveal-on-scroll">
+        <div class="row row-cols-1 row-cols-md-3 g-4 text-center">
+
+          <div class="col">
+            <h3 class="h5 mb-3" style="color: var(--brand-green);">Service Times</h3>
+            <p class="mb-1">Sunday Morning</p>
+            <p class="fw-bold mb-3">09:30</p>
+            <p class="mb-1">Sunday Evening</p>
+            <p class="fw-bold mb-0">18:00</p>
+          </div>
+
+          <div class="col">
+            <h3 class="h5 mb-3" style="color: var(--brand-green);">Offerings</h3>
+            <p class="mb-1 fw-bold">Banking Details</p>
+            <p class="mb-1">Life Ministries</p>
+            <p class="mb-1">Nedbank</p>
+            <p class="mb-1">Account: 105 662 1656</p>
+            <p class="mb-0">Branch: 101 108</p>
+          </div>
+
+          <div class="col">
+            <h3 class="h5 mb-3" style="color: var(--brand-green);">Church Office Hours</h3>
+            <p class="mb-1">Mondays &ndash; Fridays</p>
+            <p class="fw-bold mb-0">08:00 &ndash; 14:00</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         DEVELOPER NOTE: WHAT TO EXPECT WHEN YOU VISIT
+         Per the client's brief — a short, welcoming "first-time
+         visitor" blurb. Kept intentionally brief here since the
+         dedicated "I'm New" page (im-new.html) is where this really
+         gets expanded on in full.
+         ============================================================ -->
+    <section class="section-spacing text-center reveal-on-scroll" aria-label="What to expect when you visit">
+      <div class="container">
+        <p class="text-uppercase fw-bold small mb-2" style="color: var(--brand-green); letter-spacing: 1px;">First Time Here?</p>
+        <h2 class="h3 mb-3" style="color: var(--brand-navy);">What to Expect When You Visit</h2>
+        <p class="text-muted mx-auto mb-4" style="max-width: 640px;">
+          You're welcome exactly as you are. Come as you are dressed, arrive a few minutes early to find a seat, and expect a warm welcome from our church family. Our Sunday services include worship, teaching from God's Word, and a children's ministry programme for the kids.
+        </p>
+        <a href="im-new.html" class="btn link-card-btn">Learn More for First-Time Visitors</a>
+      </div>
+    </section>
+
+  </main>
+
+
+<footer class="footer">
+    <div class="text-center py-4 bg-white">
+      <div class="d-flex justify-content-center gap-3">
+        <a href="https://www.facebook.com/LMinistries/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="footer-social-btn">
+          <i class="bi bi-facebook" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.youtube.com/channel/UC44tvG1QtsGZd-dPXgL7Evg" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="footer-social-btn">
+          <i class="bi bi-youtube" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-bar text-center py-3">
+      <p class="mb-0 small">
+        Designed by <strong>VanillaTech</strong> &nbsp;|&nbsp; Service every Sunday 9:30 &amp; 18:00
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
